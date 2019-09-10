@@ -1,0 +1,22 @@
+<?xml version = "1.0" encoding = "utf-8"?>
+<!DOCTYPE hibernate-configuration SYSTEM 
+"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+
+	<session-factory>
+
+		<!-- JDBC Database connection settings -->
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost:3306/OfficeHours?serverTimezone=UTC</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password">toor</property>
+		<mapping class="cpp.cs4800.model.Department" />
+		<mapping class="cpp.cs4800.model.Faculty" />
+		<mapping class="cpp.cs4800.model.OfficeHour" />
+		<mapping class="cpp.cs4800.model.Section" />
+		<mapping class="cpp.cs4800.model.Course" />
+
+	</session-factory>
+
+</hibernate-configuration>
