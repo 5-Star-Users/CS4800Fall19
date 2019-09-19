@@ -1,0 +1,28 @@
+1	Abdelfattah	Amamra	(909) 869-3447	aamamra@cpp.edu	8-11	Computer Science
+2	Dominick	Atanasio	(909) 869-4195	daatanasio@cpp.edu	8-47	Computer Science	
+3	Tingting	Chen	(909) 869-4842	tingtingchen@cpp.edu	8-9	Computer Science
+4	Nima	Davarpanah	(909) 869-5519	ndavarpanah@cpp.edu	8-45	Computer Science
+5	Tony	Diaz	(909) 869-5519	tadiaz@cpp.edu	8-45	Computer Science
+6	Sander	Eller	(909) 869-4195	smeller@cpp.edu	8-47	Computer Science
+7	David	Gershman	(909) 869-4195	dagershman@cpp.edu	8-47	Computer Science
+8	Thomas	Huang	(909) 869-3451	thuang@cpp.edu	8-40	Computer Science
+9	Mohamed	Ibrahim	(909) 869-3451	moibrahim@cpp.edu	8-40	Computer Science
+10	Hao	Ji	(909) 869-5521	hji@cpp.edu	8-42	Computer Science
+11	Dave	Johannsen	(909) 979-4195	dljohannsen@cpp.edu	8-47	Computer Science
+12	Jonathan	Johannsen	(909) 869-5519	jdjohannsen@cpp.edu	8-45	Computer Science
+13	John	Korah	(909) 869-3441	jkorah@cpp.edu	8-15	Computer Science
+14	Devika	Maini	(909) 869-3451	dkakkar@cpp.edu	8-40	Computer Science
+15	Thanh	Nguyen	(909) 869-3451	tvnguyen7@cpp.edu	8-40	Computer Science
+16	Amar	Raheja	(909) 869-4412	raheja@cpp.edu	8-10	Computer Science
+17	Lajpat Rai	Raheja	(909) 869-4195	lraheja@cpp.edu	8-47	Computer Science
+18	Tannaz	Rezaei Damavandi	(909) 869-5519	tannazr@cpp.edu	8-45	Computer Science
+19	Edwin	Rodriguez	(909) 869-3451	earodriguez@cpp.edu	8-40	Computer Science
+20	Salam	Salluom	(909) 869-5317	ssalloum@cpp.edu	8-8	Computer Science
+21	Daisy	Sang	(909) 869-3469	fcsang@cpp.edu	8-43	Computer Science
+22	Ben	Steichen	(909) 869-3437	bsteichen@cpp.edu	8-44	Computer Science
+23	Adam	Summerville	(909) 869-3145	asummerville@cpp.edu	8-46	Computer Science
+24	Yu	Sun	(909) 869-3449	yusun@cpp.edu	8-13	Computer Science
+25	Rahul	Talari	(909) 869-3451	rtalari@cpp.edu	8-40	Computer Science
+26	Lan	Yang	(909) 869-4052	lyang@cpp.edu	8-12	Computer Science
+27	Gilbert S.	Young	(909) 869-4413	gsyoung@cpp.edu	8-14	Computer Science
+28	Hussain	Zaidi	(909) 869-5519	hmzaidi@cpp.edu	8-45	Computer Science

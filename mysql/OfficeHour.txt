@@ -1,0 +1,28 @@
+1	M 11:00 AM - 1:00 PM;W 11:00 AM - 12:00 PM & 5:00 PM - 6:00 PM	 
+2	M 5:30 PM - 7:30 PM;Tu 2:00 PM - 4:00 PM	or via zoom video conference (appointment)
+3	MWF 9:30 AM - 10:40 AM	 
+4	 	 
+5	MWF 11:00 AM - 12:00 PM	 
+6	TuTh 8:30 AM - 9:40 AM & 11:30 AM - 12:40 PM	 & by appointment
+7	TuTh 8:30 PM - 9:30 PM	 
+8	W 6:00 PM - 7:00 PM	 
+9	TuTh 7:00 PM - 8:00 PM	 
+10	TuTh 1:00 PM - 3:00 PM	 
+11	Tu 1:00 PM - 2:00 PM;Th 2:00 PM - 3:00 PM	 
+12	Tu 1:15 PM - 2:15 PM;Th 4:00 PM - 5:00 PM	 
+13	MTuWTh 3:00 PM - 4:00 PM	 
+14	Tu 11:45 AM - 12:45 PM & 4:30 - 5:30 PM;Th 3:00 PM - 5:00 PM	 
+15	MWF 12:00 PM - 1:00 PM;TuTh 9:00 AM - 9:45 AM	(or by appointment)
+16	W 10:00 AM - 12:00 PM & 2:15 PM - 4:00 PM	 
+17	TuTh 1:00 PM - 2:00 PM	 
+18	MW 12:30 PM - 2:30 PM	 & by appointment
+19	MWF 8:00 AM - 9:00 AM	 
+20	TuTh 2:50 PM - 3:50 PM;F 11:00 AM - 1:00 PM (via email only)	(or by appointment)
+21	TuTh 9:00 AM - 10:00 AM & 3:00 PM - 4:00 PM	 
+22	TuTh 12:00 - 1:00 PM	 
+23	TuTh 10:00 AM - 12:00 PM	 
+24	TuTh 11:00 AM - 1:00 PM	 
+25	MW 10:00 AM - 11:00 AM	 
+26	MW 2:30 PM - 4:00 PM;TuTh 11:30 AM - 12:00 PM	 
+27	Tu 1:45 PM - 2:25 PM & 5:20 - 6:00 PM;Th 1:45 PM - 2:25 PM & 5:20 - 7:20 PM	 
+28	MW 8:15 PM - 8:45 PM	 

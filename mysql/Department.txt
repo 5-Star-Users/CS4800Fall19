@@ -1,0 +1,7 @@
+Bilogical Sciences	College Of Science
+Chemistry & Biochemistry	College Of Science
+Computer Science	College Of Science
+Geological Sciences	College Of Science
+Kinekiology & HealthPromotion	College Of Science
+Mathematics & Statistics	College Of Science
+Physics & Astronomy	College Of Science

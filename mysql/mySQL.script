@@ -1,0 +1,67 @@
+systemctl start mariadb
+mysql -uroot -p
+toor
+create database OfficeHours;
+use OfficeHours;
+show tables;
+
+Create Table Department(
+DepartmentName Varchar(30) Primary Key,
+CollegeName Varchar(30)
+);
+
+Create Table Faculty(
+FacultyId Int Primary Key,
+FirstName Varchar(30),
+LastName Varchar(30),
+PhoneNumber Varchar(20),
+EmailAddress Varchar(30),
+OfficeLocation Varchar(30),
+DepartmentName Varchar(30),
+Foreign Key (DepartmentName) References Department(DepartmentName)
+);
+
+Create Table OfficeHour(
+FacultyId Int,
+DayTime Varchar(100),
+Comment Varchar(60),
+Primary Key(FacultyId, DayTime),
+Foreign Key (FacultyId) References Faculty(FacultyId)
+);
+
+Create Table Course(
+CourseNumber Int Primary Key,
+CourseTitle Varchar(30)
+);
+
+Create Table Section(
+Semester Varchar(30),
+CourseNumber Int,
+Section Varchar(10),
+FacultyId Int,
+DayTime Varchar(30),
+RoomLocation Varchar(30),
+Primary Key(Semester, CourseNumber, Section, FacultyId),
+Foreign Key (FacultyId) References Faculty(FacultyId),
+Foreign Key (CourseNumber) References Course(CourseNumber)
+);
+
+Select * From Department;
+Select * From Faculty;
+Select * From OfficeHour;
+Select * From Course;
+Select * From Section;
+
+Load Data Local Infile '/home/haohuynh/CPP/Fall-19/CS4800/Code/cs4800/Department.txt' Into Table Department;
+Load Data Local Infile '/home/haohuynh/CPP/Fall-19/CS4800/Code/cs4800/Faculty.txt' Into Table Faculty;
+Load Data Local Infile '/home/haohuynh/CPP/Fall-19/CS4800/Code/cs4800/OfficeHour.txt' Into Table OfficeHour;
+Load Data Local Infile '/home/haohuynh/CPP/Fall-19/CS4800/Code/cs4800/Course.txt' Into Table Course;
+Load Data Local Infile '/home/haohuynh/CPP/Fall-19/CS4800/Code/cs4800/Section.txt' Into Table Section;
+
+
+
+
+
+
+
+
