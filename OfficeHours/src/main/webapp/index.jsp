@@ -3,7 +3,7 @@
 <html>
 <body>
 <h2>Welcome 5-Star-Users!</h2>
- 		<form action="/OfficeHours/welcome" method="post">
+ 		<form action="/OfficeHours/model" method="post">
               <input type="submit"  value="Let's Start!">           
         </form>
 
