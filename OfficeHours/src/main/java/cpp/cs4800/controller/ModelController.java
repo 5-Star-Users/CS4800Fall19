@@ -132,4 +132,118 @@ public class ModelController {
 		}
 		return departments;
 	}
+
+	/**
+	 * List all current faculties
+	 */
+	@SuppressWarnings("unchecked")
+	public static ArrayList<Faculty> listFaculties() {
+		Session session = facultyFactory.openSession();
+		Transaction tx = null;
+		ArrayList<Faculty> faculties = new ArrayList<Faculty>();
+
+		try {
+			tx = session.beginTransaction();
+			Criteria criteria = session.createCriteria(Faculty.class);
+			for (Iterator<Faculty> iterator = criteria.list().iterator(); iterator.hasNext();) {
+				faculties.add((Faculty) iterator.next());
+			}
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			System.err.println(e.toString());
+		} catch (Exception ee) {
+			System.err.println(ee.toString());
+		} finally {
+			session.close();
+		}
+		return faculties;
+	}
+
+	/**
+	 * List all current office hours
+	 */
+	@SuppressWarnings("unchecked")
+	public static ArrayList<OfficeHour> listOfficeHours() {
+		Session session = officeHourFactory.openSession();
+		Transaction tx = null;
+		ArrayList<OfficeHour> officeHours = new ArrayList<OfficeHour>();
+
+		try {
+			tx = session.beginTransaction();
+			Criteria criteria = session.createCriteria(OfficeHour.class);
+			for (Iterator<OfficeHour> iterator = criteria.list().iterator(); iterator.hasNext();) {
+				officeHours.add((OfficeHour) iterator.next());
+			}
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			System.err.println(e.toString());
+		} catch (Exception ee) {
+			System.err.println(ee.toString());
+		} finally {
+			session.close();
+		}
+		return officeHours;
+	}
+
+	/**
+	 * List all current courses
+	 */
+	@SuppressWarnings("unchecked")
+	public static ArrayList<Course> listCourses() {
+		Session session = courseFactory.openSession();
+		Transaction tx = null;
+		ArrayList<Course> courses = new ArrayList<Course>();
+
+		try {
+			tx = session.beginTransaction();
+			Criteria criteria = session.createCriteria(Course.class);
+			for (Iterator<Course> iterator = criteria.list().iterator(); iterator.hasNext();) {
+				courses.add((Course) iterator.next());
+			}
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			System.err.println(e.toString());
+		} catch (Exception ee) {
+			System.err.println(ee.toString());
+		} finally {
+			session.close();
+		}
+		return courses;
+	}
+	
+	/**
+	 * List all current sections
+	 */
+	@SuppressWarnings("unchecked")
+	public static ArrayList<Section> listSections() {
+		Session session = sectionFactory.openSession();
+		Transaction tx = null;
+		ArrayList<Section> sections = new ArrayList<Section>();
+
+		try {
+			tx = session.beginTransaction();
+			Criteria criteria = session.createCriteria(Section.class);
+			for (Iterator<Section> iterator = criteria.list().iterator(); iterator.hasNext();) {
+				sections.add((Section) iterator.next());
+			}
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			System.err.println(e.toString());
+		} catch (Exception ee) {
+			System.err.println(ee.toString());
+		} finally {
+			session.close();
+		}
+		return sections;
+	}
+	
+	
 }
