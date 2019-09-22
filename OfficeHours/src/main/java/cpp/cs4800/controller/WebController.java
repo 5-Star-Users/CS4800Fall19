@@ -9,7 +9,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class WebController {
 
 	@SuppressWarnings("static-access")
-	@RequestMapping(value = "/model", method = RequestMethod.POST)
+	@RequestMapping(value = "/model", method = RequestMethod.GET)
 	public ModelAndView showMessage() {
 		ModelAndView mv = new ModelAndView("model");
 		mv.addObject("departments", ModelController.getInstance().listDepartments());
