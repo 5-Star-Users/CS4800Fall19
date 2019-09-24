@@ -28,4 +28,12 @@ public class WebController {
 		return "Hello World!!!";
 	}
 
+	@RequestMapping(value = "/OfficeHours/hi, method = RequestMethod.GET)
+	String health1Check() {
+		// You can replace this with other string,
+		// and run the application locally to check your changes
+		// with the URL: http://localhost:8080/
+		return "hell";
+	}
+
 }
