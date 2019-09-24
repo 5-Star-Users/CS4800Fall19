@@ -245,5 +245,9 @@ public class ModelController {
 		return sections;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public static String getWelcomeMessage() {
+		return "Welcome to OfficeHours!";
+	}
 	
 }
