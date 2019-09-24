@@ -11,15 +11,7 @@
 </head>
 <body>
 	<center>
-		 <table>
-	  	<TH>Departments</TH>
-	  		<c:forEach items="${departments}"  var="department">
-	  		<tr>
-				<td><c:out value = "${department.getDepartmentName()}"/></td>
-          	</tr>
-          	<tr><td><c:out value = "${oldDepartment.getDepartmentName()}"/></td></tr>
-      </c:forEach>
-	  </table>   
+		 <h1>	Hello 	</h1> 
 	</center>
 </body>
 </html>
