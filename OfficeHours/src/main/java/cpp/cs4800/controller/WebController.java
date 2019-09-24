@@ -27,5 +27,15 @@ public class WebController {
 		// with the URL: http://localhost:8080/
 		return "Hello World!!!";
 	}
-
+	
+	@RequestMapping(value = "/modelTest", method = RequestMethod.GET)
+	public ModelAndView show() {
+		ModelAndView mv = new ModelAndView("test");
+		mv.addObject("departments", ModelController.getInstance().listDepartments());
+		mv.addObject("faculties", ModelController.getInstance().listFaculties());
+		mv.addObject("officeHours", ModelController.getInstance().listOfficeHours());
+		mv.addObject("courses", ModelController.getInstance().listCourses());
+		mv.addObject("sections", ModelController.getInstance().listSections());
+		return mv;
+	}
 }
