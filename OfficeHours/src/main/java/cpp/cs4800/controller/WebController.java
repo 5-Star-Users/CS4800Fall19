@@ -40,6 +40,13 @@ public class WebController {
 		// with the URL: http://localhost:8080/
 		return "hell";
 	}
-
-
+	
+	@RequestMapping(value = "/OfficeHours/ping", method = RequestMethod.GET)
+	public String healthCheck() {
+		ModelAndView mv = new ModelAndView("model");
+		mv.addObject("Welcome", ModelController.getInstance().getWelcomeMessage());
+		
+	}
+	
+	
 }
