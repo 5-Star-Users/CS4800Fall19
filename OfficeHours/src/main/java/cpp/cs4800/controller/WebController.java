@@ -33,7 +33,7 @@ public class WebController {
 	}
 
 
-	@RequestMapping(value = "/OfficeHours/hi, method = RequestMethod.GET)
+	@RequestMapping(value = "/OfficeHours/hi", method = RequestMethod.GET)
 	String health1Check() {
 		// You can replace this with other string,
 		// and run the application locally to check your changes
@@ -42,10 +42,10 @@ public class WebController {
 	}
 	
 	@RequestMapping(value = "/OfficeHours/ping", method = RequestMethod.GET)
-	public String healthCheck() {
+	public ModelAndView healthCheck() {
 		ModelAndView mv = new ModelAndView("model");
 		mv.addObject("Welcome", ModelController.getInstance().getWelcomeMessage());
-		
+		return mv;
 	}
 	
 	
