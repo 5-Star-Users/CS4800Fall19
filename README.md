@@ -21,6 +21,7 @@ Environment Setup Requirements
 Setup mySQL server
 ---------------------
 Follow the script
+
       ```
       mysql -uroot -p
       [enter your password]
@@ -84,6 +85,7 @@ Follow the script
       Load Data Local Infile '[$YOUR_PATH]/CS4800Fall19/mysql/Course.txt' Into Table Course;
       Load Data Local Infile '[$YOUR_PATH]/CS4800Fall19/mysql/Section.txt' Into Table Section;
       ```
+      
 __NOTE:__ There are some issues with load data local infile for some people, we are currently doing more research on that
 
 Alternative way is to import the database using OfficeHours.sql in the mysql folder
