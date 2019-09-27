@@ -22,7 +22,7 @@ Setup mySQL server
 ---------------------
 Follow the script
 
-      ```
+
       mysql -uroot -p
       [enter your password]
       
@@ -84,7 +84,6 @@ Follow the script
       Load Data Local Infile '[$YOUR_PATH]/CS4800Fall19/mysql/OfficeHour.txt' Into Table OfficeHour;
       Load Data Local Infile '[$YOUR_PATH]/CS4800Fall19/mysql/Course.txt' Into Table Course;
       Load Data Local Infile '[$YOUR_PATH]/CS4800Fall19/mysql/Section.txt' Into Table Section;
-      ```
       
 __NOTE:__ There are some issues with load data local infile for some people, we are currently doing more research on that
 
@@ -109,4 +108,5 @@ Running the Project Locally
       - http://localhost:8080/OfficeHours
       
       It should look similar to this:
+      
       ![alt text](https://i.ibb.co/zJtFVDT/Screen-Shot-2019-09-26-at-10-40-58-PM.png)
