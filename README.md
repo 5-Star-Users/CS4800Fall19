@@ -40,3 +40,6 @@ Running the Project Locally
 2. OfficeHours.war will be built inside tatget folder. Copy OfficeHours.war to where your Tomcat folder is. Put it in webapps folder.
 3. To verify:
       - http://localhost:8080/OfficeHours
+      
+      It should look similar to this:
+      ![alt text](https://ibb.co/Hd9CT3f)
