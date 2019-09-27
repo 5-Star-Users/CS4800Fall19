@@ -83,7 +83,7 @@
 					<h2>CPP Office Hours</h2>
 					<a class="main_btn" href="/OfficeHours/model">Bronco Search</a>
 					<span style="padding-left:9em">
-						<a class="main_btn2" href="/OfficeHours/model">Faculty Login</a>
+						<a class="main_btn2" href="/OfficeHours/login">Faculty Login</a>
 					</span>
 					
         		</div>

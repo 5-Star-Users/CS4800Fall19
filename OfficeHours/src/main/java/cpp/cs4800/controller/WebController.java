@@ -21,7 +21,7 @@ public class WebController {
 	}
 	
 	
-	@RequestMapping(value = "/modelTest", method = RequestMethod.GET)
+	@RequestMapping(value = "/test", method = RequestMethod.GET)
 	public ModelAndView show() {
 		ModelAndView mv = new ModelAndView("test");
 		mv.addObject("departments", ModelController.getInstance().listDepartments());
@@ -45,6 +45,17 @@ public class WebController {
 	public ModelAndView healthCheck() {
 		ModelAndView mv = new ModelAndView("model");
 		mv.addObject("Welcome", ModelController.getInstance().getWelcomeMessage());
+		return mv;
+	}
+	
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	public ModelAndView showLogin() {
+		ModelAndView mv = new ModelAndView("login");
+		mv.addObject("departments", ModelController.getInstance().listDepartments());
+		mv.addObject("faculties", ModelController.getInstance().listFaculties());
+		mv.addObject("officeHours", ModelController.getInstance().listOfficeHours());
+		mv.addObject("courses", ModelController.getInstance().listCourses());
+		mv.addObject("sections", ModelController.getInstance().listSections());
 		return mv;
 	}
 	
