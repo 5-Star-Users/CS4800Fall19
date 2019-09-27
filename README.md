@@ -42,4 +42,4 @@ Running the Project Locally
       - http://localhost:8080/OfficeHours
       
       It should look similar to this:
-      ![alt text](https://ibb.co/Hd9CT3f)
+      ![alt text](https://i.ibb.co/zJtFVDT/Screen-Shot-2019-09-26-at-10-40-58-PM.png)
