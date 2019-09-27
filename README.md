@@ -20,8 +20,73 @@ Environment Setup Requirements
 
 Setup mySQL server
 ---------------------
+Follow the script
+      ```
+      mysql -uroot -p
+      [enter your password]
+      
+      create database OfficeHours;
+      use OfficeHours;
+      show tables;
 
+      Create Table Department(
+      DepartmentName Varchar(30) Primary Key,
+      CollegeName Varchar(30)
+      );
 
+      Create Table Faculty(
+      FacultyId Int Primary Key,
+      FirstName Varchar(30),
+      LastName Varchar(30),
+      PhoneNumber Varchar(20),
+      EmailAddress Varchar(30),
+      OfficeLocation Varchar(30),
+      DepartmentName Varchar(30),
+      Foreign Key (DepartmentName) References Department(DepartmentName)
+      );
+
+      Create Table OfficeHour(
+      FacultyId Int,
+      DayTime Varchar(100),
+      Comment Varchar(60),
+      Primary Key(FacultyId, DayTime),
+      Foreign Key (FacultyId) References Faculty(FacultyId)
+      );
+
+      Create Table Course(
+      CourseNumber Int Primary Key,
+      CourseTitle Varchar(30)
+      );
+
+      Create Table Section(
+      Semester Varchar(30),
+      CourseNumber Int,
+      Section Varchar(10),
+      FacultyId Int,
+      DayTime Varchar(30),
+      RoomLocation Varchar(30),
+      Primary Key(Semester, CourseNumber, Section, FacultyId),
+      Foreign Key (FacultyId) References Faculty(FacultyId),
+      Foreign Key (CourseNumber) References Course(CourseNumber)
+      );
+
+      Select * From Department;
+      Select * From Faculty;
+      Select * From OfficeHour;
+      Select * From Course;
+      Select * From Section;
+      
+      Set Local_infile = "ON";
+
+      Load Data Local Infile '[$YOUR_PATH]/CS4800Fall19/mysql/Department.txt' Into Table Department;
+      Load Data Local Infile '[$YOUR_PATH]/CS4800Fall19/mysql/Faculty.txt' Into Table Faculty;
+      Load Data Local Infile '[$YOUR_PATH]/CS4800Fall19/mysql/OfficeHour.txt' Into Table OfficeHour;
+      Load Data Local Infile '[$YOUR_PATH]/CS4800Fall19/mysql/Course.txt' Into Table Course;
+      Load Data Local Infile '[$YOUR_PATH]/CS4800Fall19/mysql/Section.txt' Into Table Section;
+      ```
+__NOTE:__ There are some issues with load data local infile for some people, we are currently doing more research on that
+
+Alternative way is to import the database using OfficeHours.sql in the mysql folder
 
 Importing the Project into Eclipse
 ----------------------------------
