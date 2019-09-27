@@ -2,7 +2,7 @@
 
 Link: TBD
 
-## Environment Setup Requirements
+Environment Setup Requirements
 --------------------------------
 
 1. [Maven](https://maven.apache.org/download.cgi) 
@@ -18,12 +18,12 @@ Link: TBD
 4. [Ecilpse](http://www.eclipse.org/)
 5. Install the Maven Eclipse Plug-in using the update site (http://www.eclipse.org/m2e/download/)
 
-## Setup mySQL server
+Setup mySQL server
 ---------------------
 
 
 
-## Importing the Project into Eclipse
+Importing the Project into Eclipse
 ----------------------------------
 
 1. File->Import->Maven->Existing Maven Projects
@@ -31,7 +31,7 @@ Link: TBD
 3. Finish
 
 
-## Running the Project Locally
+Running the Project Locally
 ----------------------------------------
 1. On the directory that contain pom.xml
       ```
