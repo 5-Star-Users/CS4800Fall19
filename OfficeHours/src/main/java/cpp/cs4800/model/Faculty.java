@@ -35,6 +35,9 @@ public class Faculty {
 	@Column(name = "DepartmentName")
 	private String departmentName;
 
+	@Column(name = "PassPhrase")
+	private String passPhrase;
+	
 	@OneToMany
 	@JoinColumn(name = "FacultyId")
 	private Set<OfficeHour> officeHours;
@@ -199,6 +202,20 @@ public class Faculty {
 	 */
 	public void setSections(Set<Section> sections) {
 		this.sections = sections;
+	}
+
+	/**
+	 * @return the passPhrase
+	 */
+	public String getPassPhrase() {
+		return passPhrase;
+	}
+
+	/**
+	 * @param passPhrase the passPhrase to set
+	 */
+	public void setPassPhrase(String passPhrase) {
+		this.passPhrase = passPhrase;
 	}
 
 	

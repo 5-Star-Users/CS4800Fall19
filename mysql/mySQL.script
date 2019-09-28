@@ -18,6 +18,7 @@ PhoneNumber Varchar(20),
 EmailAddress Varchar(30),
 OfficeLocation Varchar(30),
 DepartmentName Varchar(30),
+PassPhrase Varchar(130),
 Foreign Key (DepartmentName) References Department(DepartmentName)
 );
 
@@ -52,11 +53,11 @@ Select * From OfficeHour;
 Select * From Course;
 Select * From Section;
 
-Load Data Local Infile '/Users/titichotnuntapramote/desktop/cs4800/CS4800Fall19/mysql/Department.txt' Into Table Department;
-Load Data Local Infile '/Users/titichotnuntapramote/desktop/cs4800/CS4800Fall19/mysql/Faculty.txt' Into Table Faculty;
-Load Data Local Infile '/Users/titichotnuntapramote/desktop/cs4800/CS4800Fall19/mysql/OfficeHour.txt' Into Table OfficeHour;
-Load Data Local Infile '/Users/titichotnuntapramote/desktop/cs4800/CS4800Fall19/mysql/Course.txt' Into Table Course;
-Load Data Local Infile '/Users/titichotnuntapramote/desktop/cs4800/CS4800Fall19/mysql/Section.txt' Into Table Section;
+Load Data Local Infile '/home/haohuynh/CPP/Fall-19/CS4800/Code/cs4800/Department.txt' Into Table Department;
+Load Data Local Infile '/home/haohuynh/CPP/Fall-19/CS4800/Code/cs4800/Faculty.txt' Into Table Faculty;
+Load Data Local Infile '/home/haohuynh/CPP/Fall-19/CS4800/Code/cs4800/OfficeHour.txt' Into Table OfficeHour;
+Load Data Local Infile '/home/haohuynh/CPP/Fall-19/CS4800/Code/cs4800/Course.txt' Into Table Course;
+Load Data Local Infile '/home/haohuynh/CPP/Fall-19/CS4800/Code/cs4800/Section.txt' Into Table Section;
 
 
 

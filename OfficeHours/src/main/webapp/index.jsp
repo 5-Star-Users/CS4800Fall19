@@ -8,20 +8,20 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="icon" href="<c:url value="/resources/img/site.png"/>" type="image/png">
+		<link rel="icon" href="<c:url value="/resources/main/img/site.png"/>" type="image/png">
         <title>CPP Officer Hours</title>
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="<c:url value="/resources/css/bootstrap.css"/>">
-        <link rel="stylesheet" href="<c:url value="/resources/vendors/linericon/style.css"/>">
-        <link rel="stylesheet" href="<c:url value="/resources/css/font-awesome.min.css"/>">
-        <link rel="stylesheet" href="<c:url value="/resources/vendors/owl-carousel/owl.carousel.min.css"/>">
-        <link rel="stylesheet" href="<c:url value="/resources/vendors/lightbox/simpleLightbox.css"/>">
-        <link rel="stylesheet" href="<c:url value="/resources/vendors/nice-select/css/nice-select.css"/>">
-        <link rel="stylesheet" href="<c:url value="/resources/vendors/animate-css/animate.css"/>">
-        <link rel="stylesheet" href="<c:url value="/resources/vendors/popup/magnific-popup.css"/>">
+        <link rel="stylesheet" href="<c:url value="/resources/main/css/bootstrap.css"/>">
+        <link rel="stylesheet" href="<c:url value="/resources/main/vendors/linericon/style.css"/>">
+        <link rel="stylesheet" href="<c:url value="/resources/main/css/font-awesome.min.css"/>">
+        <link rel="stylesheet" href="<c:url value="/resources/main/vendors/owl-carousel/owl.carousel.min.css"/>">
+        <link rel="stylesheet" href="<c:url value="/resources/main/vendors/lightbox/simpleLightbox.css"/>">
+        <link rel="stylesheet" href="<c:url value="/resources/main/vendors/nice-select/css/nice-select.css"/>">
+        <link rel="stylesheet" href="<c:url value="/resources/main/vendors/animate-css/animate.css"/>">
+        <link rel="stylesheet" href="<c:url value="/resources/main/vendors/popup/magnific-popup.css"/>">
         <!-- main css -->
-        <link rel="stylesheet" href="<c:url value="/resources/css/style.css"/>">
-        <link rel="stylesheet" href="<c:url value="/resources/css/responsive.css"/>">
+        <link rel="stylesheet" href="<c:url value="/resources/main/css/style.css"/>">
+        <link rel="stylesheet" href="<c:url value="/resources/main/css/responsive.css"/>">
     </head>
     <body>
         
@@ -45,7 +45,7 @@
 					<div class="container">
 						<!-- Brand and toggle get grouped for better mobile display -->
 					<c:forEach begin="0" end="4">
-						<a class="navbar-brand logo_h" href="#"><img src="<c:url value="/resources/img/logo.png"/>" alt="" style="width:50px;height:50px;"></a>
+						<a class="navbar-brand logo_h" href="#"><img src="<c:url value="/resources/main/img/logo.png"/>" alt="" style="width:50px;height:50px;"></a>
 					</c:forEach>
 
 
@@ -81,7 +81,7 @@
         	<div class="container">
         		<div class="impress_inner text-center">
 					<h2>CPP Office Hours</h2>
-					<a class="main_btn" href="/OfficeHours/model">Bronco Search</a>
+					<a class="main_btn" href="/OfficeHours/search">Bronco Search</a>
 					<span style="padding-left:9em">
 						<a class="main_btn2" href="/OfficeHours/login">Faculty Login</a>
 					</span>

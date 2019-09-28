@@ -1,5 +1,8 @@
 package cpp.cs4800.controller;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -9,6 +12,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Restrictions;
 
 import cpp.cs4800.model.Course;
 import cpp.cs4800.model.Department;
@@ -33,6 +37,16 @@ public class ModelController {
 	 * Hibernate Running Package
 	 */
 	private static final String HIBERNATE_PACKAGE = "cpp.cs4800.model";
+
+	/**
+	 * A salt for the SHA-512
+	 */
+	private static final String SALT = "FiveStartUsersFall2019";
+
+	/**
+	 * CPP email post fix
+	 */
+	private static final String EMAIL_POSTFIX = "@cpp.edu";
 
 	/**
 	 * A session factory for the class Department <-> table Department
@@ -162,6 +176,40 @@ public class ModelController {
 	}
 
 	/**
+	 * List all current faculties
+	 */
+	@SuppressWarnings("unchecked")
+	public static Faculty getFaculty(String username, String passphrase) {
+		Session session = facultyFactory.openSession();
+		Transaction tx = null;
+		Faculty faculty = null;
+
+		try {
+			tx = session.beginTransaction();
+			Criteria criteria = session.createCriteria(Faculty.class);
+
+			criteria.add(Restrictions.like("emailAddress", username + EMAIL_POSTFIX));
+
+			for (Iterator<Faculty> iterator = criteria.list().iterator(); iterator.hasNext();) {
+				faculty = ((Faculty) iterator.next());
+				if (!getHashedPassphrase(passphrase).equals(faculty.getPassPhrase())) {
+					faculty = null;
+				}
+			}
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			System.err.println(e.toString());
+		} catch (Exception ee) {
+			System.err.println(ee.toString());
+		} finally {
+			session.close();
+		}
+		return faculty;
+	}
+
+	/**
 	 * List all current office hours
 	 */
 	@SuppressWarnings("unchecked")
@@ -216,7 +264,7 @@ public class ModelController {
 		}
 		return courses;
 	}
-	
+
 	/**
 	 * List all current sections
 	 */
@@ -244,10 +292,29 @@ public class ModelController {
 		}
 		return sections;
 	}
-	
-	@SuppressWarnings("unchecked")
-	public static String getWelcomeMessage() {
-		return "Welcome to OfficeHours!";
+
+	/**
+	 * Hash the pass phrase into a hashed code
+	 * 
+	 * @param passphrase
+	 * 
+	 */
+	public static String getHashedPassphrase(String passphrase) {
+		String hashedCode = null;
+		try {
+			MessageDigest md = MessageDigest.getInstance("SHA-512");
+			md.update(SALT.getBytes(StandardCharsets.UTF_8));
+
+			byte[] bytes = md.digest(passphrase.getBytes(StandardCharsets.UTF_8));
+			StringBuilder stringBuilder = new StringBuilder();
+			for (int i = 0; i < bytes.length; i++) {
+				stringBuilder.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
+			}
+
+			hashedCode = stringBuilder.toString();
+		} catch (NoSuchAlgorithmException e) {
+			System.err.println(e.toString());
+		}
+		return hashedCode;
 	}
-	
 }
