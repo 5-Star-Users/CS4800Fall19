@@ -27,9 +27,42 @@
 	<div class="limiter">
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-10 p-b-15">
+				<p style="color:red;"><c:out value = "${message}"/><p>
+				<table>
+						<tr>
+							<th><c:out value = "${faculty.getFirstName()}"/> <c:out value = " ${faculty.getLastName()}"/></th>
+						</tr>
+						
+						<tr><td><c:out value = "${faculty.getPhoneNumber()}"/></td></tr>
+						<tr><td><c:out value = "${faculty.getEmailAddress()}"/></td></tr>
+						<tr><td><c:out value = "${faculty.getOfficeLocation()}"/></td></tr>
+						<tr><td><c:out value = "${faculty.getDepartmentName()}"/></td></tr>
+						
+						<c:if test = "${not empty faculty.getOfficeHours()}">
+								<tr><td><h1>Office Hours</h1></tr></td>
+         						<c:forEach items="${faculty.getOfficeHours()}"  var="officeHour">
+			  						<tr><td><c:out value = "${officeHour.getDayTime()}"/></td></tr>
+									<tr><td><c:out value = "${officeHour.getComment()}"/></td></tr>
+								</c:forEach>
+      					</c:if>
+						
+						<c:if test = "${not empty faculty.getSections()}">
+								<tr><td><h1>Sections</h1></tr></td>
+         						<c:forEach items="${faculty.getSections()}"  var="section">
+			  						<tr><td><c:out value = "${section.getSemester()}"/></td></tr>
+			  						<tr><td><c:out value = "${section.getCourseTitle()}"/></td></tr>
+			  						<tr><td><c:out value = "${section.getSection()}"/></td></tr>
+									<tr><td><c:out value = "${section.getDayTime()}"/></td></tr>
+									<tr><td><c:out value = "${section.getRoomLocation()}"/></td></tr>
+								</c:forEach>
+      					</c:if>
+					
+						
+						
+							
+				</table>
 				<form method = "POST" action = "/OfficeHours/edit" class="login100-form validate-form">
-					<p style="color:red;"><c:out value = "${message}"/><p>
-					<div class="container-login100-form-btn">
+						<div class="container-login100-form-btn">
 						<input class="login100-form-btn" type = "submit" value = "Submit"/>
 					</div>
 					

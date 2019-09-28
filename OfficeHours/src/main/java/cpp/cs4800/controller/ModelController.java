@@ -14,7 +14,6 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 
-import cpp.cs4800.model.Course;
 import cpp.cs4800.model.Department;
 import cpp.cs4800.model.Faculty;
 import cpp.cs4800.model.OfficeHour;
@@ -101,10 +100,6 @@ public class ModelController {
 
 		sectionFactory = new Configuration().configure(HIBERNATE_CONF_FILE).addPackage(HIBERNATE_PACKAGE)
 				.addAnnotatedClass(Section.class).buildSessionFactory();
-
-		courseFactory = new Configuration().configure(HIBERNATE_CONF_FILE).addPackage(HIBERNATE_PACKAGE)
-				.addAnnotatedClass(Course.class).buildSessionFactory();
-
 	}
 
 	/**
@@ -235,34 +230,6 @@ public class ModelController {
 			session.close();
 		}
 		return officeHours;
-	}
-
-	/**
-	 * List all current courses
-	 */
-	@SuppressWarnings("unchecked")
-	public static ArrayList<Course> listCourses() {
-		Session session = courseFactory.openSession();
-		Transaction tx = null;
-		ArrayList<Course> courses = new ArrayList<Course>();
-
-		try {
-			tx = session.beginTransaction();
-			Criteria criteria = session.createCriteria(Course.class);
-			for (Iterator<Course> iterator = criteria.list().iterator(); iterator.hasNext();) {
-				courses.add((Course) iterator.next());
-			}
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			System.err.println(e.toString());
-		} catch (Exception ee) {
-			System.err.println(ee.toString());
-		} finally {
-			session.close();
-		}
-		return courses;
 	}
 
 	/**

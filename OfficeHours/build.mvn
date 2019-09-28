@@ -1,0 +1,11 @@
+mvn clean
+mvn package
+cd /home/haohuynh/bin/tomcat9
+sudo systemctl start mariadb
+sudo ./bin/shutdown.sh
+sudo rm -rf ./webapps/OfficeHours
+sudo rm -rf ./webapps/OfficeHours.war
+sudo cp  /home/haohuynh/CPP/Fall-19/CS4800/Code/cs4800/OfficeHours/target/OfficeHours.war ./webapps/OfficeHours.war
+sudo ./bin/startup.sh
+cd /home/haohuynh/CPP/Fall-19/CS4800/Code/cs4800/OfficeHours
+ 

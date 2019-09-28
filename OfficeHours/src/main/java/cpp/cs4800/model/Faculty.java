@@ -2,8 +2,10 @@ package cpp.cs4800.model;
 
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
@@ -37,12 +39,12 @@ public class Faculty {
 
 	@Column(name = "PassPhrase")
 	private String passPhrase;
-	
-	@OneToMany
+
+	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "FacultyId")
 	private Set<OfficeHour> officeHours;
 
-	@OneToMany
+	@OneToMany(fetch = FetchType.EAGER)
 	@JoinColumn(name = "FacultyId")
 	private Set<Section> sections;
 
@@ -218,5 +220,4 @@ public class Faculty {
 		this.passPhrase = passPhrase;
 	}
 
-	
 }

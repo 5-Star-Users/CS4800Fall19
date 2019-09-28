@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import cpp.cs4800.model.Faculty;
+
 @Controller
 public class WebController {
 
@@ -66,28 +68,33 @@ public class WebController {
 	public ModelAndView processLogin(HttpServletRequest request, HttpServletResponse response) {
 		String username = request.getParameter("username");
 		String passphrase = request.getParameter("passphrase");
-		
+
 		/*
 		 * Handle updated OfficeHours
 		 */
 		if ((username == null) && (passphrase == null)) {
-			ModelAndView mv = new ModelAndView("edit");
-			mv.addObject("message", "Test Post method");
-			return mv;
+			ModelAndView postModels = new ModelAndView("edit");
+			postModels.addObject("message", "Test Post method");
+			return postModels;
 		}
 
 		/*
 		 * Username && passphrase verification
 		 */
-		if (ModelController.getInstance().getFaculty(username, passphrase) != null) {
-			ModelAndView mv = new ModelAndView("edit");
-			return mv;
+		Faculty faculty = ModelController.getInstance().getFaculty(username, passphrase);
+		if (faculty != null) {
+			ModelAndView editModels = new ModelAndView("edit");
+			editModels.addObject("faculty", faculty);
+			return editModels;
 		}
 
-		ModelAndView mv = new ModelAndView("login");
-		mv.addObject("error", "Invalid Username/Passphrase!");
-		return mv;
+		/*
+		 * Handle invalid validation
+		 */
+		ModelAndView loginModel = new ModelAndView("login");
+		loginModel.addObject("error", "Invalid Username/Passphrase!");
+		return loginModel;
 
 	}
-	
+
 }

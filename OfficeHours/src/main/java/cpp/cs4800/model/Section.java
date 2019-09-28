@@ -17,8 +17,8 @@ public class Section implements Serializable {
 	private String semester;
 
 	@Id
-	@Column(name = "CourseNumber")
-	private Integer courseNumber;
+	@Column(name = "CourseTitle")
+	private String courseTitle;
 
 	@Id
 	@Column(name = "Section")
@@ -50,10 +50,10 @@ public class Section implements Serializable {
 	 * @param dayTime
 	 * @param roomLocation
 	 */
-	public Section(String semester, Integer courseNumber, String section, Integer facultyId, String dayTime,
+	public Section(String semester, String courseTitle, String section, Integer facultyId, String dayTime,
 			String roomLocation) {
 		this.semester = semester;
-		this.courseNumber = courseNumber;
+		this.courseTitle = courseTitle;
 		this.section = section;
 		this.facultyId = facultyId;
 		this.dayTime = dayTime;
@@ -75,17 +75,17 @@ public class Section implements Serializable {
 	}
 
 	/**
-	 * @return the courseNumber
+	 * @return the courseTitle
 	 */
-	public Integer getCourseNumber() {
-		return courseNumber;
+	public String getCourseTitle() {
+		return courseTitle;
 	}
 
 	/**
-	 * @param courseNumber the courseNumber to set
+	 * @param courseTitle the courseTitle to set
 	 */
-	public void setCourseNumber(Integer courseNumber) {
-		this.courseNumber = courseNumber;
+	public void setCourseTitle(String courseTitle) {
+		this.courseTitle = courseTitle;
 	}
 
 	/**
@@ -146,7 +146,7 @@ public class Section implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return (semester + courseNumber + section + facultyId).hashCode();
+		return (semester + courseTitle + section + facultyId).hashCode();
 	}
 
 	@Override
@@ -161,7 +161,7 @@ public class Section implements Serializable {
 		}
 
 		Section section = (Section) obj;
-		if (this.semester.equals(section.getSemester()) && (this.courseNumber == section.getCourseNumber())
+		if (this.semester.equals(section.getSemester()) && (this.courseTitle.equals(section.getCourseTitle()))
 				&& this.section.equals(section.getSection()) && (this.facultyId == section.getFacultyId())) {
 			return true;
 		}

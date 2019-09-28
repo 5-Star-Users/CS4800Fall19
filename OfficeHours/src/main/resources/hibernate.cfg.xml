@@ -15,8 +15,7 @@
 		<mapping class="cpp.cs4800.model.Faculty" />
 		<mapping class="cpp.cs4800.model.OfficeHour" />
 		<mapping class="cpp.cs4800.model.Section" />
-		<mapping class="cpp.cs4800.model.Course" />
-
+		
 	</session-factory>
 
 </hibernate-configuration>
