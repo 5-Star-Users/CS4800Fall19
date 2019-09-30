@@ -100,10 +100,11 @@ Running the Project Locally
       ```
 2. OfficeHours.war will be built inside tatget folder. Copy OfficeHours.war to where your Tomcat folder is. Put it in webapps folder.
 3. To verify:
+
       - https://localhost:8443/OfficeHours
 	
       Note: Tomcat needs to be reconfigured for SSL. Please use this guiline https://dzone.com/articles/setting-ssl-tomcat-5-minutes
 
       It should look similar to this:
       
-      ![alt text](https://i.ibb.co/zJtFVDT/Screen-Shot-2019-09-26-at-10-40-58-PM.png)
+      To be updated in the future
