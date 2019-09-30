@@ -43,8 +43,10 @@ Follow the script
       EmailAddress Varchar(30),
       OfficeLocation Varchar(30),
       DepartmentName Varchar(30),
+      PassPhrase Varchar(130),
       Foreign Key (DepartmentName) References Department(DepartmentName)
       );
+
 
       Create Table OfficeHour(
       FacultyId Int,
@@ -54,21 +56,15 @@ Follow the script
       Foreign Key (FacultyId) References Faculty(FacultyId)
       );
 
-      Create Table Course(
-      CourseNumber Int Primary Key,
-      CourseTitle Varchar(30)
-      );
-
       Create Table Section(
       Semester Varchar(30),
-      CourseNumber Int,
+      CourseTitle Varchar(30),
       Section Varchar(10),
       FacultyId Int,
       DayTime Varchar(30),
       RoomLocation Varchar(30),
-      Primary Key(Semester, CourseNumber, Section, FacultyId),
-      Foreign Key (FacultyId) References Faculty(FacultyId),
-      Foreign Key (CourseNumber) References Course(CourseNumber)
+      Primary Key(Semester, CourseTitle, Section, FacultyId),
+      Foreign Key (FacultyId) References Faculty(FacultyId)
       );
 
       Select * From Department;
@@ -82,7 +78,6 @@ Follow the script
       Load Data Local Infile '[$YOUR_PATH]/CS4800Fall19/mysql/Department.txt' Into Table Department;
       Load Data Local Infile '[$YOUR_PATH]/CS4800Fall19/mysql/Faculty.txt' Into Table Faculty;
       Load Data Local Infile '[$YOUR_PATH]/CS4800Fall19/mysql/OfficeHour.txt' Into Table OfficeHour;
-      Load Data Local Infile '[$YOUR_PATH]/CS4800Fall19/mysql/Course.txt' Into Table Course;
       Load Data Local Infile '[$YOUR_PATH]/CS4800Fall19/mysql/Section.txt' Into Table Section;
       
 __NOTE:__ There are some issues with load data local infile for some people, we are currently doing more research on that
@@ -105,8 +100,10 @@ Running the Project Locally
       ```
 2. OfficeHours.war will be built inside tatget folder. Copy OfficeHours.war to where your Tomcat folder is. Put it in webapps folder.
 3. To verify:
-      - http://localhost:8080/OfficeHours
-      
+      - https://localhost:8443/OfficeHours
+	
+      Note: Tomcat needs to be reconfigured for SSL. Please use this guiline https://dzone.com/articles/setting-ssl-tomcat-5-minutes
+
       It should look similar to this:
       
       ![alt text](https://i.ibb.co/zJtFVDT/Screen-Shot-2019-09-26-at-10-40-58-PM.png)
