@@ -31,6 +31,8 @@
 					<center>
 						<img src="<c:url value="/resources/login/images/avatar-01.jpg"/>" alt="CPP">
 						<p style="color:red;"><c:out value = "${error}"/><p>
+						<p style="color:green;"><c:out value = "${message}"/><p>
+						<p style="color:gray;"><c:out value = "${email}"/><p>
 					</center>
 
 					<div class="wrap-input100 validate-input m-t-85 m-b-35" data-validate = "Enter username">
@@ -49,7 +51,7 @@
 					<ul class="login-more p-t-25">
 						<li class="m-b-8">
 							<span class="txt1">
-								Setup / Reset
+								Reset
 							</span>
 							<a href="/OfficeHours/reset" class="txt2">
 								Password

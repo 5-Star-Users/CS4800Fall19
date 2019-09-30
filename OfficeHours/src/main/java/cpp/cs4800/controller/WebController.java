@@ -49,6 +49,30 @@ public class WebController {
 	}
 
 	/**
+	 * 
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value = "/reset", method = RequestMethod.POST)
+	public ModelAndView processReset(HttpServletRequest request, HttpServletResponse response) {
+
+		ModelAndView mv = null;
+		Faculty faculty = ModelController.getInstance().getFaculty(request.getParameter("username"));
+
+		if (faculty != null) {
+			mv = new ModelAndView("login");
+			mv.addObject("message", "Please check your email for a new passphrase: ");
+			mv.addObject("email", faculty.getEmailAddress());
+		} else {
+			mv = new ModelAndView("reset");
+			mv.addObject("error", "Your Bronco ID does not exist in this system!");
+		}
+
+		return mv;
+	}
+
+	/**
 	 * Faculties request the login page
 	 * 
 	 */
