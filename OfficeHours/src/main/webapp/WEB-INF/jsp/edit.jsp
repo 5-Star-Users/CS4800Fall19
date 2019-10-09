@@ -29,6 +29,64 @@
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-10 p-b-15">
 				<p style="color:red;"><c:out value = "${message}"/><p>
+				<div class="row d-flex justify-content-center modalWrapper">
+    				<div class="modal fade addNewInputs" id="modalAdd1" tabindex="-1" role="dialog" aria-labelledby="modalAdd" aria-hidden="true">
+      					<div class="modal-dialog" role="document">
+        					<div class="modal-content">
+          						<div class="modal-header text-center">
+            						<h4 class="modal-title w-100 font-weight-bold text-primary ml-5">Add new form</h4>
+            							<button type="button" class="close text-primary" data-dismiss="modal" aria-label="Close">
+              								<span aria-hidden="true">&times;</span>
+            							</button>
+          						</div>
+          						<div class="modal-body mx-3">
+            						<div class="md-form mb-5">
+              							<input type="text" id="inputName1" class="form-control validate">
+              								<label data-error="wrong" data-success="right" for="inputName">Name</label>
+            						</div>
+
+					            <div class="md-form mb-5">
+					              <input type="text" id="inputPosition1" class="form-control validate">
+					              <label data-error="wrong" data-success="right" for="inputPhoneNumber">Phone Number</label>
+					            </div>
+
+						        <div class="md-form mb-5">
+						          <input type="text" id="inputOfficeInput1" class="form-control validate">
+						          <label data-error="wrong" data-success="right" for="inputEmail">Email</label>
+						         </div>
+
+					            <div class="md-form mb-5">
+					              <input type="text" id="inputAge1" class="form-control validate">
+					              <label data-error="wrong" data-success="right" for="inputOfficeRoom">Office Room</label>
+					            </div>
+
+					            <div class="md-form mb-5">
+					              <input type="text" id="inputSalary1" class="form-control validate">
+					              <label data-error="wrong" data-success="right" for="inputDepartment">Department</label>
+					            </div>
+					            <div class="md-form mb-5">
+					              <input type="text" id="inputSalary1example" class="form-control validate">
+					              <label data-error="wrong" data-success="right" for="inputOfficeHours">Office Hours</label>
+					            </div>
+					            
+					            <div class="md-form mb-5">
+					              <input type="text" id="inputSalary1example" class="form-control validate">
+					              <label data-error="wrong" data-success="right" for="inputSection">Section</label>
+					            </div>
+					          </div>
+					          <div class="modal-footer d-flex justify-content-center buttonAddFormWrapper">
+					            <button class="btn btn-outline-primary btn-block buttonAdd" data-dismiss="modal">Add form
+					              <i class="fas fa-paper-plane-o ml-1"></i>
+					            </button>
+					          </div>
+					        </div>
+					      </div>
+					    </div>
+				<div class="text-center">
+      				<a href="" class="btn btn-info btn-rounded btn-sm" data-toggle="modal" data-target="#modalAdd1">Add
+      					<i class="fas fa-plus-square ml-1"></i>
+          			</a>
+    			</div>
 				<table class="table">
 				<thead class="thead-dark">
 					<th scope="col">Name</th>
