@@ -3,6 +3,7 @@ package cpp.cs4800.controller;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.RandomStringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,6 +13,11 @@ import cpp.cs4800.model.Faculty;
 
 @Controller
 public class WebController {
+
+	/**
+	 * Default One Time Passphrase Length
+	 */
+	private static final int OTP_LENGTH = 20;
 
 	/**
 	 * Users request for the search page
@@ -58,9 +64,13 @@ public class WebController {
 	public ModelAndView processReset(HttpServletRequest request, HttpServletResponse response) {
 
 		ModelAndView mv = null;
-		Faculty faculty = ModelController.getInstance().getFaculty(request.getParameter("username"));
+		String otp = RandomStringUtils.random(OTP_LENGTH, true, true);
+
+		Faculty faculty = ModelController.getInstance().updateFaculty(request.getParameter("username"), otp);
 
 		if (faculty != null) {
+			MailHelper.getInstance().send(faculty.getFirstName() + faculty.getLastName(), faculty.getEmailAddress(),
+					otp);
 			mv = new ModelAndView("login");
 			mv.addObject("message", "Please check your email for a new passphrase: ");
 			mv.addObject("email", faculty.getEmailAddress());

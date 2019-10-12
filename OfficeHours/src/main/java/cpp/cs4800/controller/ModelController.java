@@ -236,6 +236,41 @@ public class ModelController {
 	}
 
 	/**
+	 * To find a faculty having the Bronco ID like username and update his/her info
+	 */
+	@SuppressWarnings("unchecked")
+	public static Faculty updateFaculty(String username, String otp) {
+		Session session = facultyFactory.openSession();
+		Transaction tx = null;
+		Faculty faculty = null;
+
+		try {
+			tx = session.beginTransaction();
+			Criteria criteria = session.createCriteria(Faculty.class);
+
+			criteria.add(Restrictions.like("emailAddress", username + EMAIL_POSTFIX));
+
+			faculty = ((Faculty) criteria.list().iterator().next());
+
+			if (faculty != null) {
+				faculty.setPassPhrase(getHashedPassphrase(otp));
+				session.update(faculty);
+			}
+
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			return null;
+		} catch (Exception ee) {
+			return null;
+		} finally {
+			session.close();
+		}
+		return faculty;
+	}
+
+	/**
 	 * List all current office hours
 	 */
 	@SuppressWarnings("unchecked")
