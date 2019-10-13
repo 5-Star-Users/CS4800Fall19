@@ -4,7 +4,9 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -14,9 +16,7 @@ import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.criterion.Restrictions;
 
-import cpp.cs4800.model.Department;
 import cpp.cs4800.model.Faculty;
-import cpp.cs4800.model.OfficeHour;
 import cpp.cs4800.model.Section;
 
 /**
@@ -48,33 +48,10 @@ public class ModelController {
 	private static final String EMAIL_POSTFIX = "@cpp.edu";
 
 	/**
-	 * A session factory for the class Department <-> table Department
-	 */
-	private static SessionFactory departmentFactory;
-
-	/**
 	 * A session factory for the class Faculty <-> table Faculty
 	 */
 	@SuppressWarnings("unused")
 	private static SessionFactory facultyFactory;
-
-	/**
-	 * A session factory for the class OfficeHour <-> table OfficeHour
-	 */
-	@SuppressWarnings("unused")
-	private static SessionFactory officeHourFactory;
-
-	/**
-	 * A session factory for the class Course <-> table Course
-	 */
-	@SuppressWarnings("unused")
-	private static SessionFactory courseFactory;
-
-	/**
-	 * A session factory for the class Section <-> table Section
-	 */
-	@SuppressWarnings("unused")
-	private static SessionFactory sectionFactory;
 
 	/**
 	 * A singleton Hibernate Model Controller
@@ -87,19 +64,10 @@ public class ModelController {
 	@SuppressWarnings("deprecation")
 	private ModelController() {
 		/**
-		 * Initializing all the factories for Hibernate framework
+		 * Initializing the Faculty factory for Hibernate framework
 		 */
-		departmentFactory = new Configuration().configure(HIBERNATE_CONF_FILE).addPackage(HIBERNATE_PACKAGE)
-				.addAnnotatedClass(Department.class).buildSessionFactory();
-
 		facultyFactory = new Configuration().configure(HIBERNATE_CONF_FILE).addPackage(HIBERNATE_PACKAGE)
 				.addAnnotatedClass(Faculty.class).buildSessionFactory();
-
-		officeHourFactory = new Configuration().configure(HIBERNATE_CONF_FILE).addPackage(HIBERNATE_PACKAGE)
-				.addAnnotatedClass(OfficeHour.class).buildSessionFactory();
-
-		sectionFactory = new Configuration().configure(HIBERNATE_CONF_FILE).addPackage(HIBERNATE_PACKAGE)
-				.addAnnotatedClass(Section.class).buildSessionFactory();
 	}
 
 	/**
@@ -112,62 +80,6 @@ public class ModelController {
 			modelController = new ModelController();
 		}
 		return modelController;
-	}
-
-	/**
-	 * List all current departments
-	 */
-	@SuppressWarnings("unchecked")
-	public static ArrayList<Department> listDepartments() {
-		Session session = departmentFactory.openSession();
-		Transaction tx = null;
-		ArrayList<Department> departments = new ArrayList<Department>();
-
-		try {
-			tx = session.beginTransaction();
-			Criteria criteria = session.createCriteria(Department.class);
-			for (Iterator<Department> iterator = criteria.list().iterator(); iterator.hasNext();) {
-				departments.add((Department) iterator.next());
-			}
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			System.err.println(e.toString());
-		} catch (Exception ee) {
-			System.err.println(ee.toString());
-		} finally {
-			session.close();
-		}
-		return departments;
-	}
-
-	/**
-	 * List all current faculties
-	 */
-	@SuppressWarnings("unchecked")
-	public static ArrayList<Faculty> listFaculties() {
-		Session session = facultyFactory.openSession();
-		Transaction tx = null;
-		ArrayList<Faculty> faculties = new ArrayList<Faculty>();
-
-		try {
-			tx = session.beginTransaction();
-			Criteria criteria = session.createCriteria(Faculty.class);
-			for (Iterator<Faculty> iterator = criteria.list().iterator(); iterator.hasNext();) {
-				faculties.add((Faculty) iterator.next());
-			}
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			System.err.println(e.toString());
-		} catch (Exception ee) {
-			System.err.println(ee.toString());
-		} finally {
-			session.close();
-		}
-		return faculties;
 	}
 
 	/**
@@ -241,59 +153,66 @@ public class ModelController {
 	}
 
 	/**
-	 * List all current office hours
+	 * To find a faculty that satisfies the seaching criteria
 	 */
 	@SuppressWarnings("unchecked")
-	public static ArrayList<OfficeHour> listOfficeHours() {
-		Session session = officeHourFactory.openSession();
+	public static Set<Faculty> listFaculty(String firstName, String lastName, String departmentName,
+			String courseTitle) {
+		Session session = facultyFactory.openSession();
 		Transaction tx = null;
-		ArrayList<OfficeHour> officeHours = new ArrayList<OfficeHour>();
+		Set<Faculty> results = new HashSet<Faculty>();
 
 		try {
 			tx = session.beginTransaction();
-			Criteria criteria = session.createCriteria(OfficeHour.class);
-			for (Iterator<OfficeHour> iterator = criteria.list().iterator(); iterator.hasNext();) {
-				officeHours.add((OfficeHour) iterator.next());
+			Criteria criteria = session.createCriteria(Faculty.class);
+
+			if ((firstName != null) && !firstName.equals("")) {
+				criteria.add(Restrictions.like("firstName", "%" + firstName.trim() + "%"));
 			}
+
+			if ((lastName != null) && !lastName.equals("")) {
+				criteria.add(Restrictions.like("lastName", "%" + lastName.trim() + "%"));
+			}
+
+			if ((departmentName != null) && !departmentName.equals("")) {
+				criteria.add(Restrictions.like("departmentName", "%" + departmentName.trim() + "%"));
+			}
+
+			for (Iterator<Faculty> iterator = criteria.list().iterator(); iterator.hasNext();) {
+				results.add(((Faculty) iterator.next()));
+			}
+
+			Set<Faculty> removeList = new HashSet<Faculty>();
+			if ((courseTitle != null) && !courseTitle.equals("")) {
+				for (Faculty faculty : results) {
+					Boolean flag = false;
+					for (Section section : faculty.getSections()) {
+						if (section.getCourseTitle().contains(courseTitle)) {
+							flag = true;
+						}
+					}
+					if (!flag) {
+						removeList.add(faculty);
+					}
+
+				}
+			}
+
+			results.removeAll(removeList);
+
 			tx.commit();
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
-			System.err.println(e.toString());
+			return new HashSet<Faculty>();
+
 		} catch (Exception ee) {
-			System.err.println(ee.toString());
+			return new HashSet<Faculty>();
+
 		} finally {
 			session.close();
 		}
-		return officeHours;
-	}
-
-	/**
-	 * List all current sections
-	 */
-	@SuppressWarnings("unchecked")
-	public static ArrayList<Section> listSections() {
-		Session session = sectionFactory.openSession();
-		Transaction tx = null;
-		ArrayList<Section> sections = new ArrayList<Section>();
-
-		try {
-			tx = session.beginTransaction();
-			Criteria criteria = session.createCriteria(Section.class);
-			for (Iterator<Section> iterator = criteria.list().iterator(); iterator.hasNext();) {
-				sections.add((Section) iterator.next());
-			}
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			System.err.println(e.toString());
-		} catch (Exception ee) {
-			System.err.println(ee.toString());
-		} finally {
-			session.close();
-		}
-		return sections;
+		return results;
 	}
 
 	/**
@@ -305,10 +224,10 @@ public class ModelController {
 	public static String getHashedPassphrase(String passphrase) {
 		String hashedCode = null;
 		try {
-			MessageDigest md = MessageDigest.getInstance("SHA-512");
-			md.update(SALT.getBytes(StandardCharsets.UTF_8));
+			MessageDigest messageDigest = MessageDigest.getInstance("SHA-512");
+			messageDigest.update(SALT.getBytes(StandardCharsets.UTF_8));
 
-			byte[] bytes = md.digest(passphrase.getBytes(StandardCharsets.UTF_8));
+			byte[] bytes = messageDigest.digest(passphrase.getBytes(StandardCharsets.UTF_8));
 			StringBuilder stringBuilder = new StringBuilder();
 			for (int i = 0; i < bytes.length; i++) {
 				stringBuilder.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
@@ -320,4 +239,5 @@ public class ModelController {
 		}
 		return hashedCode;
 	}
+	
 }
