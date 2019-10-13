@@ -1,5 +1,7 @@
 package cpp.cs4800.controller;
 
+import java.util.Set;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,10 +40,14 @@ public class WebController {
 	@RequestMapping(value = "/search", method = RequestMethod.POST)
 	public ModelAndView processSearch(HttpServletRequest request, HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView("search");
-		/**
-		 * User ModelController to access database for searching criteria
-		 */
-		mv.addObject("message", "Test Post method");
+		Set<Faculty> faculties = ModelController.getInstance().listFaculty(request.getParameter("searchString"));
+
+		if (faculties.isEmpty()) {
+			mv.addObject("message", "Nothing is matched with your criteria!");
+			return mv;
+		}
+
+		mv.addObject("faculties", faculties);
 		return mv;
 	}
 

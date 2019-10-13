@@ -3,10 +3,10 @@ package cpp.cs4800.controller;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.regex.Pattern;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
@@ -14,6 +14,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
 import cpp.cs4800.model.Faculty;
@@ -46,6 +47,11 @@ public class ModelController {
 	 * CPP email post fix
 	 */
 	private static final String EMAIL_POSTFIX = "@cpp.edu";
+
+	/**
+	 * Multiple delimiters R.E.
+	 */
+	private static final String DELIMITERS = "[\\s\\t\\[\\]\\{\\}\\(\\)\\*\\/.,!@_#$:]+";
 
 	/**
 	 * A session factory for the class Faculty <-> table Faculty
@@ -120,7 +126,6 @@ public class ModelController {
 	/**
 	 * To find a faculty having the Bronco ID like username and update his/her info
 	 */
-	@SuppressWarnings("unchecked")
 	public static Faculty updateFaculty(String username, String otp) {
 		Session session = facultyFactory.openSession();
 		Transaction tx = null;
@@ -156,8 +161,7 @@ public class ModelController {
 	 * To find a faculty that satisfies the seaching criteria
 	 */
 	@SuppressWarnings("unchecked")
-	public static Set<Faculty> listFaculty(String firstName, String lastName, String departmentName,
-			String courseTitle) {
+	public static Set<Faculty> listFaculty(String searchString) {
 		Session session = facultyFactory.openSession();
 		Transaction tx = null;
 		Set<Faculty> results = new HashSet<Faculty>();
@@ -166,39 +170,95 @@ public class ModelController {
 			tx = session.beginTransaction();
 			Criteria criteria = session.createCriteria(Faculty.class);
 
-			if ((firstName != null) && !firstName.equals("")) {
-				criteria.add(Restrictions.like("firstName", "%" + firstName.trim() + "%"));
-			}
+			if ((searchString != null) && !searchString.equals("")) {
 
-			if ((lastName != null) && !lastName.equals("")) {
-				criteria.add(Restrictions.like("lastName", "%" + lastName.trim() + "%"));
-			}
+				String[] searchStrings = searchString.split(DELIMITERS);
+				Criterion fNameCriterion = null, lNameCriterion = null, departmentCriterion = null;
+				boolean[] appliedCriteria = { true, true, true };
 
-			if ((departmentName != null) && !departmentName.equals("")) {
-				criteria.add(Restrictions.like("departmentName", "%" + departmentName.trim() + "%"));
-			}
+				if (!searchStrings[0].equals("")) {
+					fNameCriterion = Restrictions.like("firstName", "%" + searchStrings[0] + "%");
+					lNameCriterion = Restrictions.like("lastName", "%" + searchStrings[0] + "%");
+					departmentCriterion = Restrictions.like("departmentName", "%" + searchStrings[0] + "%");
+				}
 
-			for (Iterator<Faculty> iterator = criteria.list().iterator(); iterator.hasNext();) {
-				results.add(((Faculty) iterator.next()));
-			}
-
-			Set<Faculty> removeList = new HashSet<Faculty>();
-			if ((courseTitle != null) && !courseTitle.equals("")) {
-				for (Faculty faculty : results) {
-					Boolean flag = false;
-					for (Section section : faculty.getSections()) {
-						if (section.getCourseTitle().contains(courseTitle)) {
-							flag = true;
-						}
-					}
-					if (!flag) {
-						removeList.add(faculty);
+				for (int i = 1; i < searchStrings.length; i++) {
+					if (!searchStrings[i].equals("")) {
+						fNameCriterion = Restrictions.or(fNameCriterion,
+								Restrictions.like("firstName", "%" + searchStrings[i] + "%"));
+						lNameCriterion = Restrictions.or(lNameCriterion,
+								Restrictions.like("lastName", "%" + searchStrings[i] + "%"));
+						departmentCriterion = Restrictions.or(departmentCriterion,
+								Restrictions.like("departmentName", "%" + searchStrings[i] + "%"));
 					}
 
 				}
-			}
 
-			results.removeAll(removeList);
+				criteria.add(fNameCriterion);
+				if (criteria.list().isEmpty()) {
+					appliedCriteria[0] = false;
+					criteria = session.createCriteria(Faculty.class);
+				}
+
+				criteria.add(lNameCriterion);
+				if (criteria.list().isEmpty()) {
+					appliedCriteria[1] = false;
+					criteria = session.createCriteria(Faculty.class);
+					if (appliedCriteria[0]) {
+						criteria.add(fNameCriterion);
+					}
+				}
+
+				criteria.add(departmentCriterion);
+				if (criteria.list().isEmpty()) {
+
+					appliedCriteria[2] = false;
+					criteria = session.createCriteria(Faculty.class);
+
+					if (appliedCriteria[0]) {
+						criteria.add(fNameCriterion);
+					}
+
+					if (appliedCriteria[1]) {
+						criteria.add(lNameCriterion);
+					}
+				}
+
+				for (Iterator<Faculty> iterator = criteria.list().iterator(); iterator.hasNext();) {
+					results.add(((Faculty) iterator.next()));
+				}
+
+				if (Pattern.compile("[0-9]").matcher(searchString).find()) {
+					Set<Faculty> removeList = new HashSet<Faculty>();
+
+					for (Faculty faculty : results) {
+						Boolean flag = false;
+
+						for (Section section : faculty.getSections()) {
+
+							for (int j = 0; j < searchStrings.length; j++) {
+								if (section.getCourseTitle().contains(searchStrings[j])) {
+									flag = true;
+								}
+							}
+
+						}
+
+						if (!flag) {
+							removeList.add(faculty);
+						}
+
+					}
+
+					results.removeAll(removeList);
+
+				} else {
+					if (!appliedCriteria[0] && !appliedCriteria[1] && !appliedCriteria[2]) {
+						results.clear();
+					}
+				}
+
+			}
 
 			tx.commit();
 		} catch (HibernateException e) {
@@ -239,5 +299,5 @@ public class ModelController {
 		}
 		return hashedCode;
 	}
-	
+
 }
