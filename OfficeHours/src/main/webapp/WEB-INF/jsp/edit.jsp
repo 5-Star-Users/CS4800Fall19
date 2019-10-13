@@ -29,30 +29,20 @@
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-10 p-b-15">
 				<p style="color:red;"><c:out value = "${message}"/><p>
-<<<<<<< HEAD
-<<<<<<< HEAD
-				
 				<%-- Personal information section --%>
-				<%-- <div class="row d-flex justify-content-center modalWrapper">
-=======
 				<div class="row d-flex justify-content-center modalWrapper">
->>>>>>> 8754d02fa6004d60b2fa8ac22dda53d769c1dca9
     				<div class="modal fade addNewInputs" id="modalAdd1" tabindex="-1" role="dialog" aria-labelledby="modalAdd" aria-hidden="true">
       					<div class="modal-dialog" role="document">
         					<div class="modal-content">
           						<div class="modal-header text-center">
-<<<<<<< HEAD
+
             						<h4 class="modal-title w-100 font-weight-bold text-primary ml-5">Update Information</h4>
-=======
-            						<h4 class="modal-title w-100 font-weight-bold text-primary ml-5">Add new form</h4>
->>>>>>> 8754d02fa6004d60b2fa8ac22dda53d769c1dca9
             							<button type="button" class="close text-primary" data-dismiss="modal" aria-label="Close">
               								<span aria-hidden="true">&times;</span>
             							</button>
           						</div>
           						<div class="modal-body mx-3">
             						<div class="md-form mb-5">
-<<<<<<< HEAD
               							<input type="text" id="inputName1" 
               							class="form-control validate" placeholder="${faculty.getFirstName()} ${faculty.getLastName()}">
               								<label data-error="wrong" data-success="right" for="inputName">Name</label>
@@ -87,73 +77,24 @@
 										<input class="login100-form-btn" type = "submit" value = "Submit"/>
 									</div>
 								</form>
-=======
-              							<input type="text" id="inputName1" class="form-control validate">
-              								<label data-error="wrong" data-success="right" for="inputName">Name</label>
-            						</div>
 
-					            <div class="md-form mb-5">
-					              <input type="text" id="inputPosition1" class="form-control validate">
-					              <label data-error="wrong" data-success="right" for="inputPhoneNumber">Phone Number</label>
-					            </div>
-
-						        <div class="md-form mb-5">
-						          <input type="text" id="inputOfficeInput1" class="form-control validate">
-						          <label data-error="wrong" data-success="right" for="inputEmail">Email</label>
-						         </div>
-
-					            <div class="md-form mb-5">
-					              <input type="text" id="inputAge1" class="form-control validate">
-					              <label data-error="wrong" data-success="right" for="inputOfficeRoom">Office Room</label>
-					            </div>
-
-					            <div class="md-form mb-5">
-					              <input type="text" id="inputSalary1" class="form-control validate">
-					              <label data-error="wrong" data-success="right" for="inputDepartment">Department</label>
-					            </div>
-					            <div class="md-form mb-5">
-					              <input type="text" id="inputSalary1example" class="form-control validate">
-					              <label data-error="wrong" data-success="right" for="inputOfficeHours">Office Hours</label>
-					            </div>
-					            
-					            <div class="md-form mb-5">
-					              <input type="text" id="inputSalary1example" class="form-control validate">
-					              <label data-error="wrong" data-success="right" for="inputSection">Section</label>
-					            </div>
-					          </div>
-					          <div class="modal-footer d-flex justify-content-center buttonAddFormWrapper">
-					            <button class="btn btn-outline-primary btn-block buttonAdd" data-dismiss="modal">Add form
-					              <i class="fas fa-paper-plane-o ml-1"></i>
-					            </button>
-					          </div>
->>>>>>> 8754d02fa6004d60b2fa8ac22dda53d769c1dca9
 					        </div>
 					      </div>
 					    </div>
 				<div class="text-center">
-<<<<<<< HEAD
+
       				<a href="" class="btn btn-info btn-rounded btn-sm" data-toggle="modal" data-target="#modalAdd1">Edit Information
           			</a>
-    			</div> --%>
-    			
-=======
-      				<a href="" class="btn btn-info btn-rounded btn-sm" data-toggle="modal" data-target="#modalAdd1">Add
-      					<i class="fas fa-plus-square ml-1"></i>
-          			</a>
     			</div>
->>>>>>> 8754d02fa6004d60b2fa8ac22dda53d769c1dca9
 				<table class="table">
 				<thead class="thead-dark">
-					<th scope="col">Name</th>
+				<th scope="col">Name</th>
       				<th scope="col">Phone Number</th>
       				<th scope="col">Email</th>
       				<th scope="col">Office Room</th>
       				<th scope="col">Department</th>
-<<<<<<< HEAD
-=======
       				<th scope="col">Office Hours</th>
       				<th scope="col">Sections</th>
->>>>>>> 8754d02fa6004d60b2fa8ac22dda53d769c1dca9
 				</thead>
 				<tbody>
 					<tr>
@@ -162,7 +103,7 @@
 						<td><c:out value = "${faculty.getEmailAddress()}"/></td>
 						<td><c:out value = "${faculty.getOfficeLocation()}"/></td>
 						<td><c:out value = "${faculty.getDepartmentName()}"/></td>
-<<<<<<< HEAD
+
 					</tr>
 				</tbody>
 				
@@ -278,14 +219,13 @@
 				</thead>
 				<tbody>
 					<tr>
-=======
->>>>>>> 8754d02fa6004d60b2fa8ac22dda53d769c1dca9
+
 						<c:if test = "${not empty faculty.getOfficeHours()}">
 							<c:forEach items="${faculty.getOfficeHours()}"  var="officeHour">
 			  						<td><c:out value = "${officeHour.getDayTime()}"/></td>
 								</c:forEach>
 						</c:if>
-<<<<<<< HEAD
+
 						<c:if test = "${not empty faculty.getSections()}">
          						<c:forEach items="${faculty.getSections()}"  var="section">
 			  						<td><c:out value = "${section.getCourseTitle()} ${section.getSection()}"/></td>
@@ -297,24 +237,9 @@
 				</div>
 				
 				
-						<%-- <c:if test = "${not empty faculty.getOfficeHours()}">
-=======
-				<table>
-						<tr>
-							<th><c:out value = "${faculty.getFirstName()}"/> <c:out value = " ${faculty.getLastName()}"/></th>
-						</tr>
 						
-						<tr><td><c:out value = "${faculty.getPhoneNumber()}"/></td></tr>
-						<tr><td><c:out value = "${faculty.getEmailAddress()}"/></td></tr>
-						<tr><td><c:out value = "${faculty.getOfficeLocation()}"/></td></tr>
-						<tr><td><c:out value = "${faculty.getDepartmentName()}"/></td></tr>
-=======
-					</tr>
-				</tbody>
->>>>>>> 8754d02fa6004d60b2fa8ac22dda53d769c1dca9
 						
 						<c:if test = "${not empty faculty.getOfficeHours()}">
->>>>>>> 5797783f9842be67be253987f64ebb83ec0f8c2c
 								<tr><td><h1>Office Hours</h1></tr></td>
          						<c:forEach items="${faculty.getOfficeHours()}"  var="officeHour">
 			  						<tr><td><c:out value = "${officeHour.getDayTime()}"/></td></tr>
@@ -332,7 +257,7 @@
 									<tr><td><c:out value = "${section.getRoomLocation()}"/></td></tr>
 								</c:forEach>
       					</c:if>
-					 --%>
+
 						
 						
 							
