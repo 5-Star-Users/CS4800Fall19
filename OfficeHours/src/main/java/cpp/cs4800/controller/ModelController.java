@@ -206,36 +206,6 @@ public class ModelController {
 	}
 
 	/**
-	 * To find a faculty having the Bronco ID like username
-	 */
-	@SuppressWarnings("unchecked")
-	public static Faculty getFaculty(String username) {
-		Session session = facultyFactory.openSession();
-		Transaction tx = null;
-		Faculty faculty = null;
-
-		try {
-			tx = session.beginTransaction();
-			Criteria criteria = session.createCriteria(Faculty.class);
-
-			criteria.add(Restrictions.like("emailAddress", username + EMAIL_POSTFIX));
-
-			faculty = ((Faculty) criteria.list().iterator().next());
-
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			System.err.println(e.toString());
-		} catch (Exception ee) {
-			System.err.println(ee.toString());
-		} finally {
-			session.close();
-		}
-		return faculty;
-	}
-
-	/**
 	 * To find a faculty having the Bronco ID like username and update his/her info
 	 */
 	@SuppressWarnings("unchecked")
