@@ -43,7 +43,7 @@ public class MailHelper {
 	/**
 	 * Default CC_EMAIL_ADDRESS for management only
 	 */
-	private static final String CC = "hah.ptit@gmail.com";
+	private static final String CC = "hah.ptit@gmail.com, nuntapramote@cpp.edu, esguaman@cpp.edu, spoudel@cpp.edu, ssimental@cpp.edu";
 
 	/**
 	 * Office Hours email subject
@@ -53,8 +53,8 @@ public class MailHelper {
 	/**
 	 * Office Hours email content
 	 */
-	private static final String CONTENT = "\nThank you for applying for Office Hours. Please use the above passphrase to login to your account. Your username is the same BroncoID."
-			+ "\n" + "Thank You!\n" + "The CS4800-5-Star-Users Team\n";
+	private static final String CONTENT = "\n\nThank you for applying for Office Hours. Please use the above passphrase to login to your account. Your username is the same BroncoID."
+			+ "\n\n" + "Thank You!\n\n" + "The CS4800-5-Star-Users Team\n";
 
 	/**
 	 * An email session management
@@ -93,8 +93,8 @@ public class MailHelper {
 			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(TO, false));
 			message.setRecipients(Message.RecipientType.CC, InternetAddress.parse(CC, false));
 			message.setSubject(SUBJECT);
-			message.setText("Please updated the recipient for the final demo \nDear Professor " + recipient
-					+ "\n Your OTP is " + otp + CONTENT);
+			message.setText("Please updated the recipient for the final demo\n\nDear Professor " + recipient
+					+ "\n\nYour OTP is " + otp + CONTENT);
 			message.setSentDate(new Date());
 
 			// Get SMTPTransport

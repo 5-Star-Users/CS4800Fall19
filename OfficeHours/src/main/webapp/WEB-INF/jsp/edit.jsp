@@ -20,7 +20,6 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/login/vendor/daterangepicker/daterangepicker.css"/>">
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/login/css/util.css"/>">
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/login/css/main.css"/>">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
 <body>
@@ -29,6 +28,7 @@
 		<div class="container-login100">
 			<div class="wrap-login100 p-t-10 p-b-15">
 				<p style="color:red;"><c:out value = "${message}"/><p>
+<<<<<<< HEAD
 				
 				<%-- Personal information section --%>
 				<%-- <div class="row d-flex justify-content-center modalWrapper">
@@ -232,6 +232,19 @@
 				
 				
 						<%-- <c:if test = "${not empty faculty.getOfficeHours()}">
+=======
+				<table>
+						<tr>
+							<th><c:out value = "${faculty.getFirstName()}"/> <c:out value = " ${faculty.getLastName()}"/></th>
+						</tr>
+						
+						<tr><td><c:out value = "${faculty.getPhoneNumber()}"/></td></tr>
+						<tr><td><c:out value = "${faculty.getEmailAddress()}"/></td></tr>
+						<tr><td><c:out value = "${faculty.getOfficeLocation()}"/></td></tr>
+						<tr><td><c:out value = "${faculty.getDepartmentName()}"/></td></tr>
+						
+						<c:if test = "${not empty faculty.getOfficeHours()}">
+>>>>>>> 5797783f9842be67be253987f64ebb83ec0f8c2c
 								<tr><td><h1>Office Hours</h1></tr></td>
          						<c:forEach items="${faculty.getOfficeHours()}"  var="officeHour">
 			  						<tr><td><c:out value = "${officeHour.getDayTime()}"/></td></tr>
@@ -282,9 +295,6 @@
 	<script src="<c:url value="/resources/login/vendor/daterangepicker/daterangepicker.js"/>"></script>
 	<script src="<c:url value="/resources/login/vendor/countdowntime/countdowntime.js"/>"></script>
 	<script src="<c:url value="/resources/login/js/main.js"/>"></script>
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
 </body>
 </html>
