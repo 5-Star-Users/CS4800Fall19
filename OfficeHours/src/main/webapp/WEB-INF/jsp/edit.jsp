@@ -81,20 +81,17 @@
 					        </div>
 					      </div>
 					    </div>
-				<div class="text-center">
-
-      				<a href="" class="btn btn-info btn-rounded btn-sm" data-toggle="modal" data-target="#modalAdd1">Edit Information
-          			</a>
-    			</div>
-				<table class="table">
+				<table class="table table-striped table-bordered">
 				<thead class="thead-dark">
 				<th scope="col">Name</th>
       				<th scope="col">Phone Number</th>
       				<th scope="col">Email</th>
       				<th scope="col">Office Room</th>
       				<th scope="col">Department</th>
+					<!--
       				<th scope="col">Office Hours</th>
       				<th scope="col">Sections</th>
+					-->
 				</thead>
 				<tbody>
 					<tr>
@@ -111,10 +108,14 @@
 				<%-- Office hour section --%>
 			<div class="wrapper-editor">
 			
-			  <div class="block my-4">
+				<div class="text-center">
+      				<a href="" class="btn btn-info btn-rounded btn-sm" data-toggle="modal" data-target="#modalAdd15">Edit Information
+          			</a>
+			  <!--
 			    <div class="d-flex justify-content-center">
 			      <p class="h5 text-primary createShowP">0 row selected</p>
 			    </div>
+				-->
 			  </div>
 			  <div class="row d-flex justify-content-center modalWrapper">
 			    <div class="modal fade addNewInputs" id="modalAdd15" tabindex="-1" role="dialog" aria-labelledby="modalAdd15"
@@ -150,6 +151,7 @@
 			      <a href="" class="btn btn-info btn-rounded btn-sm" data-toggle="modal" data-target="#modalAdd15">Add<i
 			          class="fas fa-plus-square ml-1"></i></a>
 			    </div>
+				<!--
 			    <div class="modal fade modalEditClass" id="modalEdit15" tabindex="-1" role="dialog" aria-hidden="true">
 			      <div class="modal-dialog" role="document">
 			        <div class="modal-content">
@@ -179,10 +181,16 @@
 			        </div>
 			      </div>
 			    </div>
+				-->
+				
+				<!--
 			    <div class="text-center buttonEditWrapper">
 			      <button class="btn btn-info btn-rounded btn-sm buttonEdit" data-toggle="modal" data-target="#modalEdit15"
 			        disabled>Edit<i class="fas fa-pen-square ml-1"></i></a>
 			    </div>
+				-->
+				
+				<!--
 			    <div class="modal fade" id="modalDelete15" tabindex="-1" role="dialog" aria-labelledby="modalDelete15"
 			      aria-hidden="true">
 			      <div class="modal-dialog" role="document">
@@ -207,10 +215,14 @@
 			        </div>
 			      </div>
 			    </div>
+				-->
+				
+				<!--
 			    <div class="text-center">
 			      <button class="btn btn-danger btn-sm btn-rounded buttonDelete" data-toggle="modal" disabled data-target="#modalDelete15"
 			        disabled>Delete<i class="fas fa-times ml-1"></i></a>
 			    </div>
+				-->
 			  </div>
 			  <table id="dt-less-columns" class="table table-striped table-bordered" cellspacing="0" width="100%">		
 				<thead class="thead-dark">
