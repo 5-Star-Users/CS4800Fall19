@@ -18,6 +18,7 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
 import cpp.cs4800.model.Faculty;
+import cpp.cs4800.model.OfficeHour;
 import cpp.cs4800.model.Section;
 
 /**
@@ -60,6 +61,12 @@ public class ModelController {
 	private static SessionFactory facultyFactory;
 
 	/**
+	 * A session factory for the class Faculty <-> table Faculty
+	 */
+	@SuppressWarnings("unused")
+	private static SessionFactory officeHourFactory;
+	
+	/**
 	 * A singleton Hibernate Model Controller
 	 */
 	private static ModelController modelController = null;
@@ -74,6 +81,8 @@ public class ModelController {
 		 */
 		facultyFactory = new Configuration().configure(HIBERNATE_CONF_FILE).addPackage(HIBERNATE_PACKAGE)
 				.addAnnotatedClass(Faculty.class).buildSessionFactory();
+		officeHourFactory = new Configuration().configure(HIBERNATE_CONF_FILE).addPackage(HIBERNATE_PACKAGE)
+				.addAnnotatedClass(OfficeHour.class).buildSessionFactory();
 	}
 
 	/**
@@ -114,9 +123,9 @@ public class ModelController {
 		} catch (HibernateException e) {
 			if (tx != null)
 				tx.rollback();
-			System.err.println(e.toString());
+			return null;
 		} catch (Exception ee) {
-			System.err.println(ee.toString());
+			return null;
 		} finally {
 			session.close();
 		}
@@ -156,6 +165,42 @@ public class ModelController {
 		}
 		return faculty;
 	}
+	
+	/**
+	 * To find a faculty having the Bronco ID like username and update his/her info
+	 */
+	public static OfficeHour updateOfficeHour(String username, OfficeHour officeHour) {
+		Session session = officeHourFactory.openSession();
+		Transaction tx = null;
+		OfficeHour hour = null;
+
+		try {
+			tx = session.beginTransaction();
+			Criteria criteria = session.createCriteria(OfficeHour.class);
+
+			criteria.add(Restrictions.like("facultyId", officeHour.getFacultyId()));
+
+			hour = ((OfficeHour) criteria.list().iterator().next());
+
+			if (hour != null) {
+				hour.setDayTime(officeHour.getDayTime());
+				hour.setComment(officeHour.getComment());
+				session.update(hour);
+			}
+
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			return null;
+		} catch (Exception ee) {
+			return null;
+		} finally {
+			session.close();
+		}
+		return hour;
+	}
+	
 
 	/**
 	 * To find a faculty that satisfies the seaching criteria
