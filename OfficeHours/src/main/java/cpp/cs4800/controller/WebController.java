@@ -12,9 +12,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import cpp.cs4800.model.Faculty;
+import cpp.cs4800.model.OfficeHour;
 
 @Controller
 public class WebController {
+	private Faculty latestFaculty = null;
 
 	/**
 	 * Default One Time Passphrase Length
@@ -108,23 +110,36 @@ public class WebController {
 	public ModelAndView processLogin(HttpServletRequest request, HttpServletResponse response) {
 		String username = request.getParameter("username");
 		String passphrase = request.getParameter("passphrase");
+		String newHours = request.getParameter("newHours");
 
+		if (username != null && passphrase != null) {
+			latestFaculty = ModelController.getInstance().getFaculty(username, passphrase);
+		}
 		/*
 		 * Handle updated OfficeHours
 		 */
 		if ((username == null) && (passphrase == null)) {
-			ModelAndView postModels = new ModelAndView("edit");
-			postModels.addObject("message", "Test Post method");
-			return postModels;
+			if (newHours.isEmpty()) {
+				ModelAndView postModels = new ModelAndView("edit");
+				postModels.addObject("message", "Test Post method");
+				return postModels;
+			}
+			OfficeHour updatedHours = new OfficeHour(latestFaculty.getFacultyId(), newHours, null);
+			ModelController.getInstance().updateOfficeHour(updatedHours);
+			ModelAndView editModels = new ModelAndView("edit");
+			editModels.addObject("faculty", ModelController.getInstance().getFaculty(latestFaculty.getFacultyId()));
+			// ModelAndView postModels = new ModelAndView("edit");
+			// postModels.addObject("message", "Test Post method");
+			// return postModels;
+			return editModels;
 		}
 
 		/*
 		 * Username && passphrase verification
 		 */
-		Faculty faculty = ModelController.getInstance().getFaculty(username, passphrase);
-		if (faculty != null) {
+		if (latestFaculty != null) {
 			ModelAndView editModels = new ModelAndView("edit");
-			editModels.addObject("faculty", faculty);
+			editModels.addObject("faculty", latestFaculty);
 			return editModels;
 		}
 

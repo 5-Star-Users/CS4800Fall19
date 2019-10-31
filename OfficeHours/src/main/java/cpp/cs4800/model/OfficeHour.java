@@ -16,7 +16,6 @@ public class OfficeHour implements Serializable{
 	@Column(name = "FacultyId")
 	private Integer facultyId;
 
-	@Id
 	@Column(name = "DayTime")
 	private String dayTime;
 

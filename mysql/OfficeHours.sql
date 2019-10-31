@@ -90,7 +90,7 @@ CREATE TABLE `OfficeHour` (
   `FacultyId` int(11) NOT NULL,
   `DayTime` varchar(100) NOT NULL,
   `Comment` varchar(60) DEFAULT NULL,
-  PRIMARY KEY (`FacultyId`,`DayTime`),
+  PRIMARY KEY (`FacultyId`),
   CONSTRAINT `OfficeHour_ibfk_1` FOREIGN KEY (`FacultyId`) REFERENCES `Faculty` (`FacultyId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;

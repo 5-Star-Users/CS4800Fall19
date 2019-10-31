@@ -131,6 +131,37 @@ public class ModelController {
 		}
 		return faculty;
 	}
+	
+	@SuppressWarnings("unchecked")
+	public static Faculty getFaculty(int id) {
+		Session session = facultyFactory.openSession();
+		Transaction tx = null;
+		Faculty faculty = null;
+
+		try {
+			tx = session.beginTransaction();
+			Criteria criteria = session.createCriteria(Faculty.class);
+
+			criteria.add(Restrictions.like("facultyId", id));
+
+			faculty = ((Faculty) criteria.list().iterator().next());
+//				if (faculty.getFacultyId() != id) {  unnecessary unless possible for facluty to have same id
+//					faculty = null;
+//				}
+//			}
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			return null;
+		} catch (Exception ee) {
+			return null;
+		} finally {
+			session.close();
+		}
+		return faculty;
+	}
+
 
 	/**
 	 * To find a faculty having the Bronco ID like username and update his/her info
@@ -169,7 +200,7 @@ public class ModelController {
 	/**
 	 * To find a faculty having the Bronco ID like username and update his/her info
 	 */
-	public static OfficeHour updateOfficeHour(String username, OfficeHour officeHour) {
+	public static OfficeHour updateOfficeHour(OfficeHour officeHour) {
 		Session session = officeHourFactory.openSession();
 		Transaction tx = null;
 		OfficeHour hour = null;
@@ -178,7 +209,7 @@ public class ModelController {
 			tx = session.beginTransaction();
 			Criteria criteria = session.createCriteria(OfficeHour.class);
 
-			criteria.add(Restrictions.like("facultyId", officeHour.getFacultyId()));
+			criteria.add(Restrictions.eq("facultyId", officeHour.getFacultyId()));
 
 			hour = ((OfficeHour) criteria.list().iterator().next());
 
@@ -344,5 +375,12 @@ public class ModelController {
 		}
 		return hashedCode;
 	}
-
+//TODO marker to remember to delete test code
+//	public static void main(String[] args) {
+//		Faculty temp = ModelController.getInstance().getFaculty(20);
+//		if(temp == null)
+//			System.out.println("null");
+//		System.out.println(temp.getFirstName());
+//	}
+	
 }
