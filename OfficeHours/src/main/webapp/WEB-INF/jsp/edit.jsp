@@ -24,10 +24,11 @@
 </head>
 
 <body>
-	
-	<div class="limiter">
-		<div class="container-login100">
-			<div class="wrap-login100 p-t-10 p-b-15">
+
+<div class="limiter">
+	<div class="container-login100">
+		<!-- this class is the padding one below for upper table-->
+			<div class="login100 p-t-15 p-b-5 p-l-3 p-r-3">
 				<p style="color:red;"><c:out value = "${message}"/><p>
 				<%-- Personal information section --%>
 				<div class="row d-flex justify-content-center modalWrapper">
@@ -72,51 +73,43 @@
 						              <label data-error="wrong" data-success="right" for="inputDepartment">Department</label>
 						            </div>
 						          </div>
-						          <form method = "POST" action = "/OfficeHours/edit" class="login100-form validate-form">
+						        <form method = "POST" action = "/OfficeHours/edit" class="login100-form validate-form">
 									<div class="container-login100-form-btn">
 										<input class="login100-form-btn" type = "submit" value = "Submit"/>
 									</div>
 								</form>
-
 					        </div>
-					      </div>
 					    </div>
-				<table class="table table-striped table-bordered">
+					</div>
+				<table class="table table-striped" align="center">
 				<thead class="thead-dark">
 				<th scope="col">Name</th>
       				<th scope="col">Phone Number</th>
       				<th scope="col">Email</th>
       				<th scope="col">Office Room</th>
       				<th scope="col">Department</th>
-					<!--
-      				<th scope="col">Office Hours</th>
-      				<th scope="col">Sections</th>
-					-->
 				</thead>
 				<tbody>
-					<tr>
+					<tr bgcolor="#00DD00">
 						<td><c:out value = "${faculty.getFirstName()}"/> <c:out value = " ${faculty.getLastName()}"/></td>
 						<td><c:out value = "${faculty.getPhoneNumber()}"/></td>
 						<td><c:out value = "${faculty.getEmailAddress()}"/></td>
 						<td><c:out value = "${faculty.getOfficeLocation()}"/></td>
 						<td><c:out value = "${faculty.getDepartmentName()}"/></td>
 
-					</tr>
+					</tr>					
 				</tbody>
 				
 				
 				<%-- Office hour section --%>
 			<div class="wrapper-editor">
 			
-				<div class="text-center">
-      				<a href="" class="btn btn-info btn-rounded btn-sm" data-toggle="modal" data-target="#modalAdd15">Edit Information
+				<div class="text-center p-b-5">
+      				<a href="" class="btn btn-info btn-rounded btn-sm" data-toggle="modal" data-target="#modalAdd15">Edit OfficeHours
           			</a>
-			  <!--
-			    <div class="d-flex justify-content-center">
-			      <p class="h5 text-primary createShowP">0 row selected</p>
-			    </div>
-				-->
 				</div>
+			  <!--================Update OfficeHours Section =================-->
+
 			  <div class="row d-flex justify-content-center modalWrapper">
 			    <div class="modal fade addNewInputs" id="modalAdd15" tabindex="-1" role="dialog" aria-labelledby="modalAdd15"
 			      aria-hidden="true">
@@ -153,111 +146,31 @@
 					  </form>
 			      </div>
 			    </div>
-				<!--
-			    <div class="text-center">
-			      <a href="" class="btn btn-info btn-rounded btn-sm" data-toggle="modal" data-target="#modalAdd1">Add<i
-			          class="fas fa-plus-square ml-1"></i></a>
-			    </div>
-				-->
-				<!--
-			    <div class="modal fade modalEditClass" id="modalEdit15" tabindex="-1" role="dialog" aria-hidden="true">
-			      <div class="modal-dialog" role="document">
-			        <div class="modal-content">
-			          <div class="modal-header text-center">
-			            <h4 class="modal-title w-100 font-weight-bold text-secondary ml-5">Edit</h4>
-			            <button type="button" class="close text-secondary" data-dismiss="modal" aria-label="Close">
-			              <span aria-hidden="true">&times;</span>
-			            </button>
-			          </div>
-			          <div class="modal-body mx-3 modal-inputs">
-			            <div class="md-form mb-5">
-              				<input type="text" id="inputName1" class="form-control validate" >
-              				<label data-error="wrong" data-success="right" for="inputName">Office Hour time</label>
-            			</div>
-
-						<div class="md-form mb-5">
-						     <input type="text" id="inputPosition1" class="form-control validate">
-						     <label data-error="wrong" data-success="right" for="inputPhoneNumber">Section</label>
-						</div>
-			          </div>
-			          <div class="modal-footer d-flex justify-content-center editInsideWrapper">
-			            <button class="btn btn-outline-secondary btn-block editInside" data-dismiss="modal">Edit
-			              form
-			              <i class="far fa-paper-plane ml-1"></i>
-			            </button>
-			          </div>
-			        </div>
-			      </div>
-			    </div>
-				-->
-				
-				<!--
-			    <div class="text-center buttonEditWrapper">
-			      <button class="btn btn-info btn-rounded btn-sm buttonEdit" data-toggle="modal" data-target="#modalEdit15"
-			        disabled>Edit<i class="fas fa-pen-square ml-1"></i></a>
-			    </div>
-				-->
-				
-				<!--
-			    <div class="modal fade" id="modalDelete15" tabindex="-1" role="dialog" aria-labelledby="modalDelete15"
-			      aria-hidden="true">
-			      <div class="modal-dialog" role="document">
-			        <div class="modal-content">
-			          <div class="modal-header text-center">
-			            <h4 class="modal-title w-100 font-weight-bold ml-5 text-danger">Delete</h4>
-			            <button type="button" class="close text-danger" data-dismiss="modal" aria-label="Close">
-			              <span aria-hidden="true">&times;</span>
-			            </button>
-			          </div>
-			          <div class="modal-body mx-3">
-			            <p class="text-center h4">Are you sure to delete selected row?</p>
-			          </div>
-			          <div class="modal-footer d-flex justify-content-center deleteButtonsWrapper">
-			            <button type="button" class="btn btn-outline-danger btnYesClass" id="btnYes15" data-dismiss="modal">Yes
-			              <i class="far fa-paper-plane ml-1"></i>
-			            </button>
-			            <button type="button" class="btn btn-outline-primary btnNoClass" id="btnNo15" data-dismiss="modal">No
-			              <i class="far fa-paper-plane ml-1"></i>
-			            </button>
-			          </div>
-			        </div>
-			      </div>
-			    </div>
-				-->
-				
-				<!--
-			    <div class="text-center">
-			      <button class="btn btn-danger btn-sm btn-rounded buttonDelete" data-toggle="modal" disabled data-target="#modalDelete15"
-			        disabled>Delete<i class="fas fa-times ml-1"></i></a>
-			    </div>
-				-->
 			  </div>
-			  <table id="dt-less-columns" class="table table-striped table-bordered" cellspacing="0" width="100%">		
-				<thead class="thead-dark">
-      				<th scope="col">Office Hours</th>
-      				<th scope="col">Sections</th>
-				</thead>
-				<tbody>
-					<tr>
+				<table id="dt-less-columns" class="table table-striped" cellspacing="0" width="100%">		
+					<thead class="thead-dark">
+						<th scope="col">Office Hours</th>
+						<th scope="col">Sections</th>
+					</thead>
+					<tbody>
+						<tr bgcolor="#00DD00">
 
-						<c:if test = "${not empty faculty.getOfficeHours()}">
-							<c:forEach items="${faculty.getOfficeHours()}"  var="officeHour">
-			  						<td><c:out value = "${officeHour.getDayTime()}"/></td>
-								</c:forEach>
-						</c:if>
+							<c:if test = "${not empty faculty.getOfficeHours()}">
+								<c:forEach items="${faculty.getOfficeHours()}"  var="officeHour">
+										<td><c:out value = "${officeHour.getDayTime()}"/></td>
+									</c:forEach>
+							</c:if>
 
-						<c:if test = "${not empty faculty.getSections()}">
-         						<c:forEach items="${faculty.getSections()}"  var="section">
-			  						<td><c:out value = "${section.getCourseTitle()} ${section.getSection()}"/></td>
-								</c:forEach>
-      					</c:if>		
-					</tr>
-				</tbody>
+							<c:if test = "${not empty faculty.getSections()}">
+									<c:forEach items="${faculty.getSections()}"  var="section">
+										<td><c:out value = "${section.getCourseTitle()} ${section.getSection()}"/></td>
+									</c:forEach>
+							</c:if>		
+						</tr>
+					</tbody>
 				</table>
-				</div>
-				
-				
-						
+			</div>
+					<div class="container" align="center">
 						
 						<c:if test = "${not empty faculty.getOfficeHours()}">
 								<tr><td><h1>Office Hours</h1></tr></td>
@@ -279,19 +192,12 @@
       					</c:if>
 
 						
-						
-							
+					</div>		
 				</table>
-				<form method = "POST" action = "/OfficeHours/edit" class="login100-form validate-form">
-						<div class="container-login100-form-btn">
-						<input class="login100-form-btn" type = "submit" value = "Submit"/>
-					</div>
-					
-				</form>
 			</div>
 		</div>
 	</div>
-	
+</div>	
 
 	<div id="dropDownSelect1"></div>
 	<script>
