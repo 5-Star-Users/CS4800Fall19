@@ -111,6 +111,8 @@ public class WebController {
 		String username = request.getParameter("username");
 		String passphrase = request.getParameter("passphrase");
 		String newHours = request.getParameter("newHours");
+		String newComment = request.getParameter("newComment");
+		String newSection = request.getParameter("newSection");
 
 		if (username != null && passphrase != null) {
 			latestFaculty = ModelController.getInstance().getFaculty(username, passphrase);
@@ -118,19 +120,18 @@ public class WebController {
 		/*
 		 * Handle updated OfficeHours
 		 */
+//		need to make it so that you can update either hours, comments, or both
+//		this will always update both office hour and comment based on what is input
 		if ((username == null) && (passphrase == null)) {
 			if (newHours.isEmpty()) {
 				ModelAndView postModels = new ModelAndView("edit");
 				postModels.addObject("message", "Test Post method");
 				return postModels;
 			}
-			OfficeHour updatedHours = new OfficeHour(latestFaculty.getFacultyId(), newHours, null);
+			OfficeHour updatedHours = new OfficeHour(latestFaculty.getFacultyId(), newHours, newComment);
 			ModelController.getInstance().updateOfficeHour(updatedHours);
 			ModelAndView editModels = new ModelAndView("edit");
 			editModels.addObject("faculty", ModelController.getInstance().getFaculty(latestFaculty.getFacultyId()));
-			// ModelAndView postModels = new ModelAndView("edit");
-			// postModels.addObject("message", "Test Post method");
-			// return postModels;
 			return editModels;
 		}
 

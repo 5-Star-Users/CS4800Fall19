@@ -81,6 +81,9 @@ public class ModelController {
 		 */
 		facultyFactory = new Configuration().configure(HIBERNATE_CONF_FILE).addPackage(HIBERNATE_PACKAGE)
 				.addAnnotatedClass(Faculty.class).buildSessionFactory();
+		/**
+		 * Initializing the OfficeHour factory for Hibernate framework
+		 */
 		officeHourFactory = new Configuration().configure(HIBERNATE_CONF_FILE).addPackage(HIBERNATE_PACKAGE)
 				.addAnnotatedClass(OfficeHour.class).buildSessionFactory();
 	}
@@ -198,7 +201,7 @@ public class ModelController {
 	}
 	
 	/**
-	 * To find a faculty having the Bronco ID like username and update his/her info
+	 * To find a faculty having the Bronco ID like username and update his/her office hours
 	 */
 	public static OfficeHour updateOfficeHour(OfficeHour officeHour) {
 		Session session = officeHourFactory.openSession();

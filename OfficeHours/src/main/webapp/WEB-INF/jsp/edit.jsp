@@ -81,7 +81,7 @@
 					        </div>
 					    </div>
 					</div>
-				<table class="table table-striped" align="center">
+				<table class="table table-bordered table-striped" align="center">
 				<thead class="thead-dark">
 				<th scope="col">Name</th>
       				<th scope="col">Phone Number</th>
@@ -107,6 +107,9 @@
 				<div class="text-center p-b-5">
       				<a href="" class="btn btn-info btn-rounded btn-sm" data-toggle="modal" data-target="#modalAdd15">Edit OfficeHours
           			</a>
+					<!--log out button temp-->
+					<a href="/OfficeHours/" class="btn btn-danger btn-rounded btn-sm">Logout</a>
+
 				</div>
 			  <!--================Update OfficeHours Section =================-->
 
@@ -131,10 +134,16 @@
 							</div>
 
 							<div class="md-form mb-5">
+								 <input type="text" id="inputPosition2" class="form-control validate" name = "newComment">
+								 <label data-error="wrong" data-success="right" for="inputName">Comment</label>
+								 <span class="focus-input100"></span>
+							</div>
+
+
+							<div class="md-form mb-5">
 								 <input type="text" id="inputPosition1" class="form-control validate" name = "newSection">
 								 <label data-error="wrong" data-success="right" for="inputPhoneNumber">Section</label>
 								 <span class="focus-input100"></span>
-
 							</div>
 						  </div>
 						  <div class="modal-footer d-flex justify-content-center buttonAddFormWrapper">
@@ -147,7 +156,7 @@
 			      </div>
 			    </div>
 			  </div>
-				<table id="dt-less-columns" class="table table-striped" cellspacing="0" width="100%">		
+				<table id="dt-less-columns" class="table table-bordered table-striped" cellspacing="0" width="100%">		
 					<thead class="thead-dark">
 						<th scope="col">Office Hours</th>
 						<th scope="col">Sections</th>
