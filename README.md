@@ -1,6 +1,6 @@
 # Professors' OfficeHours Search Web Service
 
-Link: (www.professorhours.com)
+Link: www.professorhours.com
 
 Environment Setup Requirements
 --------------------------------
