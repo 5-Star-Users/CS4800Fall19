@@ -4,6 +4,8 @@ Link: www.professorhours.com
 
 This web service allows students to search for all their professors' office hours not limitted to their classes. It will help students to visit their professors even if they are not currently taking those classes.
 
+[Slides](https://docs.google.com/presentation/d/1eGhHA4RoFZDrqD-FlsT10eCihGdmjr00LahcUc1dYfM/edit?usp=sharing)
+
 Environment Setup Requirements
 --------------------------------
 
