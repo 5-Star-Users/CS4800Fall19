@@ -1,6 +1,6 @@
 # Professors' OfficeHours Search Web Service
 
-Link: www.professorhours.com
+Link: http://professorhours.com:8080/OfficeHours/
 
 This web service allows students to search for all their professors' office hours not limitted to their classes. It will help students to visit their professors even if they are not currently taking those classes.
 
